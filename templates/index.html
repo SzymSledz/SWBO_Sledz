@@ -1,5 +1,30 @@
 {% extends "base.html" %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-<h1>Test</h1>
+<div class="row">
+    <div class="card col-sm" style="width: 12rem;">
+        <img src="{{url_for('static', filename='images/learning.png')}}" />
+      <div class="card-body">
+        <h5 class="card-title">Ćwicz</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-sm" style="width: 12rem;">
+        <img src="{{url_for('static', filename='images/sticky_notes_box.png')}}" />
+      <div class="card-body">
+        <h5 class="card-title">Przeglądaj kolekcję</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-sm" style="width: 12rem;">
+        <img src="{{url_for('static', filename='images/graph.png')}}" />
+      <div class="card-body">
+        <h5 class="card-title">Statystyki</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+</div>
 {% endblock %}
