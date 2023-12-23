@@ -8,11 +8,14 @@
 <body>
     <nav class="navbar navbar-dark bg-primary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Fiszki</a>
-         <img src="{{url_for('static', filename='images/logo.png')}}" width="3%"/>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="/">Fiszki  <img src="{{url_for('static', filename='images/logo.png')}}" width="6%"/></a>
+          {% if "user" not in session%}
+            <a class="navbar-brand" href="/login">Sign in</a>
+          {% endif %}
+          {% if "user" in session%}
+            <a class="navbar-brand" href="/login">{{session["user"]}}</a>
+            <a class="navbar-brand" href="/logout"><img src="{{url_for('static', filename='images/logout_icon.png')}}" width="6%"/></a>
+          {% endif %}
       </div>
     </nav>
     {% block content %}
