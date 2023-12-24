@@ -9,13 +9,19 @@
     <nav class="navbar navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Fiszki  <img src="{{url_for('static', filename='images/logo.png')}}" width="6%"/></a>
-          {% if "user" not in session%}
-            <a class="navbar-brand" href="/login">Sign in</a>
+
+          {% if session["logged_in"]%}
+              <div class="d-inline-flex justify-content-end">
+                <a class="navbar-brand" href="/login">Mój profil</a>
+                <a class="navbar-brand mw-100" href="/logout"><img src="{{url_for('static', filename='images/logout_icon.png')}}"/></a>
+              </div>
+          {% else %}
+              <div>
+                <a class="navbar-brand" href="/login">Sign up</a>
+                <a class="navbar-brand" href="/login">Sign in</a>
+              </div>
           {% endif %}
-          {% if "user" in session%}
-            <a class="navbar-brand" href="/login">{{session["user"]}}</a>
-            <a class="navbar-brand" href="/logout"><img src="{{url_for('static', filename='images/logout_icon.png')}}" width="6%"/></a>
-          {% endif %}
+
       </div>
     </nav>
     <div class="container-fluid"/>
