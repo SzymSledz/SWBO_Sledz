@@ -6,7 +6,8 @@ from pjf import app
 from pjf import db
 from pjf.models import users, groups, cards, lessons
 from pjf.main import *
-from pjf.practice.utils import shuffle_list, check_answers
+from pjf.practice.utils import shuffle_list, check_answers, calculate_score, calculate_group_completion
+from datetime import datetime
 
 practice = Blueprint('practice', __name__)
 
@@ -54,9 +55,25 @@ def lesson_page(group_id):
 
         session["results"] = results
         session["answers"] = answers
-        print(answers)
-        print(results)
-        print(translations)
+        score = calculate_score(results)
+        date = datetime.utcnow().date()
+        print(score)
+        new_lesson = lessons(completion=score, date=date, group_id=group_id)
+        db.session.add(new_lesson)
+        db.session.commit()
+
+        new_completion = calculate_group_completion(group_id)
+        print(new_completion)
+        groups.query.filter_by(id=group_id).update({"completion": new_completion}) # updating avg completion % of group
+        db.session.commit()
+
+        # print(answers)
+        # print(results)
+        # print(translations)
+        # print("Score: " + str(score) + "%")
+        # print(now.date())
+
+
         return redirect(url_for("practice.lesson_page", group_id=group_id))
 
     if("results" not in session):
@@ -66,5 +83,7 @@ def lesson_page(group_id):
     else:
         results = session["results"]
         answers = session["answers"]
-        session.pop("results")
+        session.pop("results")          # so it will display only this one time
+        session.pop("answers")
+
     return render_template("lesson.html", cards=cards_list, results=results, answers=answers)

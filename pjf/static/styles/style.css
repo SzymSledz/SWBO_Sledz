@@ -52,6 +52,7 @@
     width: 20%;
 }
 
+.groups .completion,
 .lesson,
 .stats{
     font-weight: 600!important;
@@ -63,7 +64,7 @@
 
 .lesson .card-wrapper{
     width: 37%;
-    margin-bottom: 10%;
+    margin-bottom: 14%;
 }
 
 .lesson input:focus{
@@ -75,4 +76,8 @@
     z-index: 3;
     margin: 7% auto;
     width: 24%;
+}
+
+.groups .completion{
+    font-size: 1.2rem;
 }

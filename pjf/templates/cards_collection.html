@@ -58,11 +58,11 @@
                 <img src="{{url_for('static', filename='images/sticky_notes5.png')}}" class="border-bottom border-3 border-primary w-100"/>
                 <p
                     {% if group.completion < 50 %}
-                        class="text-secondary position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                        class="text-secondary position-absolute bottom-0 end-0 px-2 completion"
                     {% elif group.completion < 70 %}
-                        class="text-warning position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                        class="text-warning position-absolute bottom-0 end-0 px-2 completion"
                     {% else %}
-                        class="text-success position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                        class="text-success position-absolute bottom-0 end-0 px-2 completion"
                     {% endif %}
                 >
                     {{group.completion}} %</p>

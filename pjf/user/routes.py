@@ -5,6 +5,7 @@ from pjf import app
 from pjf import db
 from pjf.models import users, groups, cards
 from pjf.main import *
+from pjf.user.utils import get_user_id, count_completion, count_words, count_lessons, get_favorite_lang, count_days
 
 user = Blueprint('user', __name__)
 
@@ -117,7 +118,7 @@ def user_page():
             if "login" in session:
                 login_in_session = session["login"]
 
-        user_id = users.query.filter_by(login=login_in_session).first().id
+        user_id = get_user_id(session["login"])
         users_groups = groups.query.filter_by(user_id=user_id).all()
         messages = []
 
@@ -139,6 +140,7 @@ def logout_page():
     session.pop("delete_confirmed", None)
     session.pop("group_delete", None)
     session.pop("results", None)
+    session.pop("answers", None)
     flash(f"Zostałeś poprawnie wylogowany!", "info")
     return redirect(url_for("user.login_page"))
 
@@ -148,7 +150,13 @@ def stats_page():
     if "logged_in" not in session:
         return redirect(url_for("login.login_page"))
 
-    user_id = users.query.filter_by(login=session["login"]).first().id
-    users_groups=groups.query.filter_by(user_id=user_id).all()
+    user_id = get_user_id(session["login"])
+    users_groups = groups.query.filter_by(user_id=user_id).all()
 
-    return render_template("stats.html", groups=users_groups)
+    words = count_words(session["login"])
+    lessons = count_lessons(session["login"])
+    completion = count_completion(session["login"])
+    lang = get_favorite_lang(session["login"])
+    days = count_days(session["login"])
+
+    return render_template("stats.html", groups=users_groups, words=words, lessons=lessons, completion=completion, lang = lang, days = days)

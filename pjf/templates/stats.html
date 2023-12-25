@@ -11,14 +11,28 @@
     </div>
 
     <div class="d-flex flex-row justify-content-between">
-        <div class="border border-2 border-primary  my-2 p-3 completion misc-stats">Wykonałeś X lekcji</div>
-        <div class="border border-2 border-primary  my-2 p-3 days misc-stats">Uczyłeś się przez X dni</div>
-        <div class="border border-2 border-primary  my-2 p-3 learned-words misc-stats">Poznałeś  X  słów </div>
+        <div class="border border-2 border-primary  my-2 p-3 completion misc-stats">
+            Wykonałeś {{lessons}}
+            {% if lessons < 5 %}
+                lekcje
+            {% else %}
+                lekcji
+            {% endif %}
+        </div>
+        <div class="border border-2 border-primary  my-2 p-3 days misc-stats">Uczyłeś się przez {{days}} dni</div>
+        <div class="border border-2 border-primary  my-2 p-3 learned-words misc-stats">
+            Poznałeś {{words}}
+            {% if words < 6 %}
+                słowa
+            {% else %}
+                słów
+            {% endif %}
+        </div>
     </div>
 
     <div class="d-flex flex-row justify-content-between">
-        <div class="border border-2 border-primary  my-2 p-3 top-lang misc-stats">Odpowiadasz ze skutecznością: X</div>
-        <div class="border border-2 border-primary  my-2 p-3 completion misc-stats">Twój ulubiony jezyk to: </div>
+        <div class="border border-2 border-primary  my-2 p-3 top-lang misc-stats">Odpowiadasz ze skutecznością: {{completion}} %</div>
+        <div class="border border-2 border-primary  my-2 p-3 completion misc-stats">Twój ulubiony jezyk to: {{lang}}</div>
     </div>
 
 

@@ -31,7 +31,7 @@ class cards(db.Model):
 
 class lessons(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
-    completion = db.Column(db.String(60))
+    completion = db.Column(db.Integer)
     date = db.Column(db.DateTime)
     group_id = db.Column(db.Integer, db.ForeignKey("groups.id"))
 

@@ -4,7 +4,7 @@ from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from pjf import app
 from pjf import db
-from pjf.models import users, groups, cards
+from pjf.models import users, groups, cards, lessons
 from pjf.main import *
 
 def swapPositions(list, pos1, pos2):
@@ -61,3 +61,19 @@ def check_answers(cards, answers): # check for whole lesson
         results.append(result)
 
     return results
+
+def calculate_score(answers):
+    score = 0
+    for answer in answers:
+        if answer == 'correct' or answer == 'nearly':
+            score += 1
+    return round(score/len(answers)*100)
+
+def calculate_group_completion(group_id):
+    group_lessons = lessons.query.filter_by(group_id=group_id).all()
+    result = 0
+    for lesson in group_lessons:
+        print("id: " + str(lesson.id) + "score: " + str(lesson.completion))
+        result += int(lesson.completion)
+
+    return round(result/len(group_lessons))
