@@ -2,23 +2,32 @@
 {% block title %}Sign up Page{% endblock %}
 {% block content %}
     <h1>Zarejestruj się</h1>
+    {% with messages  = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p class="text-danger">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     <form action="#" method="post">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Login</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" name="login" aria-describedby="emailHelp" placeholder="Enter login" value="{{login if login}}">
+      <div class="form-group mt-3">
+        <label for="loginInput">Wpisz Login</label>
+        <input type="text"
+           {% if get_flashed_messages() %}
+                class="form-control border border-danger"
+           {% else %}
+                class="form-control"
+           {% endif %}
+           id="loginInput" name="login" placeholder="Login" value="{{login if login}}">
       </div>
-      <div class="form-group">
-        <label for="paswordImput">Password</label>
-        <input type="password" class="form-control" id="paswordImput" name="password" placeholder="Password" value="{{password if password}}">
+      <div class="form-group mt-3">
+        <label for="passwordInput">Wpisz hasło</label>
+        <input type="password" class="form-control" id="passwordInput" name="password" placeholder="*****" value="{{password if password}}">
       </div>
-      <div class="form-group">
-        <label for="paswordRepeatImput">Repeat Password</label>
-        <input type="password" class="form-control" id="paswordRepeatImput" name="passwordRepeat" placeholder="Password" value="{{password if password}}">
+      <div class="form-group mt-3">
+        <label for="passwordRepeatInput">Powtórz hasło</label>
+        <input type="password" class="form-control" id="passwordRepeatInput" name="passwordRepeat" placeholder="*****" value="{{password if password}}">
       </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary mt-3">Zatwierdź</button>
     </form>
 {% endblock %}
