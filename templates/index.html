@@ -1,29 +1,38 @@
 {% extends "base.html" %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-<div class="row">
-    <div class="card col-sm" style="width: 12rem;">
-        <img src="{{url_for('static', filename='images/learning.png')}}" />
-      <div class="card-body">
-        <h5 class="card-title">Ćwicz</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="row justify-content-center">
+
+    <h2 class="text-center">Witaj na głównej Fiszek</h2>
+    <p class="text-center">Dzięki tej aplikacji przyswoisz słówka w obcym jęzku w błyskawiczny sposób, a gdzięki panelowi statystyk możęsz kontrolować swój progress</p>
+    <div class="card col-sm p-0 m-2" style="width: 12rem;">
+        <img src="{{url_for('static', filename='images/learning.png')}}" class="border-top border-bottom border-3 border-primary"/>
+      <div class="card-body p-0">
+        <div class="px-3 py-4">
+            <h5 class="card-title">Ćwicz</h5>
+            <p class="card-text">Wybierz lekcje ze swojej kolekcji i zacznij ćwiczyczenie</p>
+        </div>
+        <a href="#" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
       </div>
     </div>
-    <div class="card col-sm" style="width: 12rem;">
-        <img src="{{url_for('static', filename='images/sticky_notes_box.png')}}" />
-      <div class="card-body">
-        <h5 class="card-title">Przeglądaj kolekcję</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card col-sm p-0 m-2" style="width: 12rem;">
+        <img src="{{url_for('static', filename='images/sticky_notes_box.png')}}" class="border-bottom border-top border-3 border-primary"/>
+      <div class="card-body p-0">
+        <div class="px-3 py-4">
+            <h5 class="card-title">Przeglądaj kolekcję</h5>
+            <p class="card-text">Przejrzyj lub edytuj swoją kolekcję fiszek</p>
+        </div>
+        <a href="#" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
       </div>
     </div>
-    <div class="card col-sm" style="width: 12rem;">
-        <img src="{{url_for('static', filename='images/graph.png')}}" />
-      <div class="card-body">
-        <h5 class="card-title">Statystyki</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card col-sm p-0 m-2" style="width: 12rem;">
+        <img src="{{url_for('static', filename='images/graph.png')}}" class="border-bottom border-top border-3 border-primary"/>
+      <div class="card-body p-0">
+        <div class="px-3 py-4">
+            <h5 class="card-title">Statystyki</h5>
+            <p class="card-text">Sprawdź swoj postępy w nauce!<br />Zobacz statystki swoich lekcji</p>
+        </div>
+        <a href="#" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100 m-10" /></a>
       </div>
     </div>
 </div>

@@ -77,6 +77,12 @@ def logout_page():
     session.pop("logged_in", None)
     return redirect(url_for("login_page"))
 
+@app.route("/sign_up", methods=["GET", "POST"])
+def sign_up_page():
+    if "logged_in" in session:
+        return redirect(url_for("login_page"))
+    return render_template("sign_up.html")
+
 if __name__ == '__main__':
     db.create_all()
     app.run(debug = True)
