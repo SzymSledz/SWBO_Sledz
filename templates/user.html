@@ -2,7 +2,14 @@
 {% block title %}User's Page{% endblock %}
 
 {% block content %}
-    To strona twojego profilu {{session["user"]}}
+  {% with messages  = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+    To strona twojego profilu
     <form action="#" method="post">
         <label>
             Email

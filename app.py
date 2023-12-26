@@ -54,13 +54,15 @@ def login_page():
             session["login_failed"] = True
             return redirect(url_for("login_page", login_failed=session["login_failed"]))
     else:
-        login = ''
-        password = ''
+        if("login" in session):
+            login = session["login"]
+        else:
+            login = ''
 
         if session["login_failed"] == True: # set login_failed = False in order to display error only once
             session["login_failed"] = False
-            return render_template("login.html", login=login, password=password, login_failed=True)
-        return render_template("login.html", login=login, password=password, login_failed=False)
+            return render_template("login.html", login=login, login_failed=True)
+        return render_template("login.html", login=login, login_failed=False)
 
 
 @app.route("/user", methods=["GET", "POST"])
@@ -87,6 +89,8 @@ def logout_page():
     session.pop("password", None)
     session.pop("logged_in", None)
     session.pop("login_failed", None)
+    session.pop("sign_up_error", None)
+    flash("Zostałeś poprawnie wylogowany!", "info")
     return redirect(url_for("login_page"))
 
 @app.route("/sign_up", methods=["GET", "POST"])
@@ -106,26 +110,35 @@ def sign_up_page():
 
         if user_in_db: #user login allready taken
             flash("Ta nazwa użytkownika jest już zajęta", "warning")
+            session["sign_up_error"] = "user exists"
             return redirect(url_for("sign_up_page", login=session["login"]))
         else:
             if user_password != user_password_repeat:
-                flash("Hasło i jego powtrzórzenie nie są identyczne", "warning")
+                flash("Hasło i jego powtrzórzenie nie są identyczne", "error")
+                session["sign_up_error"] = "different passwords"
                 return redirect(url_for("sign_up_page"))
             if user_password == '':
                 flash("Hasło nie może być puste", "warning")
+                session["sign_up_error"] = "empty password"
                 return redirect(url_for("sign_up_page"))
-            new_user = users(user_login, user_password)
+            new_user = users(user_login, user_password) # sign up successful
             db.session.add(new_user)
             db.session.commit()
             session["logged_in"] = True  # if login is succesfull
+            flash("Zostałeś poprawnie zarejestrowany!", "info")
             return redirect(url_for("user_page"))
     else:
-        if "logged_in" in session:
+        if "logged_in" in session: # already logged in - redirect
             return redirect(url_for("user_page"))
         else:
-            if "login" in session:
-                return render_template("sign_up.html", login=session["login"])
-            return render_template("sign_up.html", login="")
+            if "sign_up_error" in session:
+                error = session["sign_up_error"]
+                session.pop("sign_up_error", None)
+            else:
+                error = ""
+            if "login" in session:  # fill login input if login is in session
+                return render_template("sign_up.html", login=session["login"], error=error)
+            return render_template("sign_up.html", login="", error=error)
 
 if __name__ == '__main__':
     db.create_all()
