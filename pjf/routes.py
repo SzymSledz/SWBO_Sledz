@@ -1,24 +1,9 @@
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(__name__)
-app.secret_key = "@$FA@Tzw$t"
-app.permanent_session_lifetime = timedelta(hours = 2)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.app_context().push()
-db = SQLAlchemy(app)
-
-class users(db.Model):
-    id = db.Column("id", db.Integer, primary_key=True)
-    login = db.Column(db.String(60))
-    password = db.Column(db.String(60))
-
-    def __init__(self, login, password):
-        self.login = login
-        self.password = password
+from pjf import app
+from pjf import db
+from pjf.models import users
 
 @app.route("/")
 def main_page():
@@ -139,7 +124,3 @@ def sign_up_page():
             if "login" in session:  # fill login input if login is in session
                 return render_template("sign_up.html", login=session["login"], error=error)
             return render_template("sign_up.html", login="", error=error)
-
-if __name__ == '__main__':
-    db.create_all()
-    app.run(debug = True)
