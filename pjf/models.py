@@ -12,6 +12,7 @@ class users(db.Model):
         self.login = login
         self.password = password
 
+
 class groups(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     name = db.Column(db.String(60))
@@ -19,6 +20,7 @@ class groups(db.Model):
     #creation_date = db.Column(db.Datetime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     card = db.relationship("cards", backref="group", lazy=True)
+
 
 class cards(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)

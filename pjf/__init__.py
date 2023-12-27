@@ -12,4 +12,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.app_context().push()
 db = SQLAlchemy(app)
 
-from pjf import routes
+from pjf.main.routes import main
+from pjf.login.routes import login
+
+app.register_blueprint(login)
+app.register_blueprint(main)
