@@ -13,7 +13,7 @@ app.app_context().push()
 db = SQLAlchemy(app)
 
 from pjf.main.routes import main
-from pjf.login.routes import login
+from pjf.user.routes import user
 
-app.register_blueprint(login)
+app.register_blueprint(user)
 app.register_blueprint(main)
