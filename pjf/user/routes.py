@@ -8,45 +8,6 @@ from pjf.main import *
 
 user = Blueprint('user', __name__)
 
-# @user.route("/login", methods=["GET", "POST"])
-# def login_page():
-#     if "logged_in" in session:
-#         return redirect(url_for("user.user_page"))
-#     if "login_failed" not in session:
-#         session["login_failed"] = False
-#     if request.method == "POST":
-#         session.permanent = True
-#         user_login = request.form["login"]
-#         user_password = request.form["password"]
-#         session["login"] = user_login
-#         session["password"] = user_password
-#
-#         user_in_db = users.query.filter_by(login=user_login).first()
-#
-#         if user_in_db:
-#             user_in_db_password = users.query.filter_by(login=user_login).first().password
-#
-#             if user_password == user_in_db_password:
-#                 session["logged_in"] = True  # if user is succesfull
-#                 return redirect(url_for("user.user_page"))
-#             else:
-#                 #failed to user
-#                 session["login_failed"] = True
-#                 return redirect(url_for("user.login_page", login_failed=session["login_failed"]))
-#         else:
-#             # failed to user user not found
-#             session["login_failed"] = True
-#             return redirect(url_for("user.login_page", login_failed=session["login_failed"]))
-#     else:
-#         if("login" in session):
-#             login = session["login"]
-#         else:
-#             login = ''
-#
-#         if session["login_failed"] == True: # set login_failed = False in order to display error only once
-#             session["login_failed"] = False
-#             return render_template("login.html", login=login, login_failed=True)
-#         return render_template("user.html", login=login, login_failed=False)
 @user.route("/login", methods=["GET", "POST"])
 def login_page():
     if "logged_in" in session:
@@ -98,6 +59,11 @@ def sign_up_page():
         user_login = request.form["login"]
         user_password = request.form["password"]
         user_password_repeat = request.form["passwordRepeat"]
+
+        if(user_login == ""):
+            flash("Nazwa użytkownika jest pusta", "error")
+            session["sign_up_error"] = "empty login"
+            return redirect(url_for("user.sign_up_page"))
 
         session["login"] = user_login
         session["password"] = user_password

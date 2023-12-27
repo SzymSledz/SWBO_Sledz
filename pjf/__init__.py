@@ -14,6 +14,8 @@ db = SQLAlchemy(app)
 
 from pjf.main.routes import main
 from pjf.user.routes import user
+from pjf.collection.routes import collection
 
 app.register_blueprint(user)
 app.register_blueprint(main)
+app.register_blueprint(collection)

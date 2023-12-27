@@ -13,7 +13,7 @@
       <div class="form-group mt-3">
         <label for="loginInput">Wpisz Login</label>
         <input type="text"
-           {% if error == 'user exists' %}
+           {% if error == 'user exists' or error == 'empty login' %}
                 class="form-control border border-danger"
            {% else %}
                 class="form-control"
