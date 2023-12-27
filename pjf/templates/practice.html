@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Fiszki{% endblock %}
+{% block content %}
+        {% if groups %}
+            <h2 class="py-5">Wybierz grupę słow z poniższej kolekcji i zacznij lekcję</h2>
+            <div class="row justify-content-start flex-wrap">
+                {% for card in groups %}
+                <div class="card p-0 m-2 position-relative" style="width: 20%">
+                    <img src="{{url_for('static', filename='images/sticky_note.png')}}" class="border-bottom border-3 border-primary"/>
+                  <div class="card-body p-0">
+                    <div class="px-3 py-4">
+                        <h5 class="card-title">{{card.name}}</h5>
+                        <p class="card-text">{{card.lang}}</p>
+                    </div>
+                    <a href="#" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Zacznij lekcję</a>
+                  </div>
+                </div>
+                {% endfor %}
+        {% else %}
+               <h2 class="py-2">Pusto...</h2>
+               <h4 class="py-2">Przejdź do swojej kolekcji, aby dodać pierwsze lekcje</h4>
+               <a href="/cards_collection" class="btn btn-primary mt-10 rounded-0 rounded-bottom rounded-top my-2">Przejdź do kolekcji<img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
+        {% endif %}
+            </div>
+{% endblock %}
