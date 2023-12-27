@@ -3,7 +3,7 @@ from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from pjf import app
 from pjf import db
-from pjf.models import users, groups
+from pjf.models import users, groups, cards
 
 @app.route("/")
 def main_page():
@@ -133,8 +133,8 @@ def sign_up_page():
                 return render_template("sign_up.html", login=session["login"], error=error)
             return render_template("sign_up.html", login="", error=error)
 
-@app.route("/add_card", methods=["GET", "POST"])
-def add_card_page():
+@app.route("/cards_collection", methods=["GET", "POST"])
+def cards_collection_page():
     if "logged_in" not in session:
         return redirect(url_for("login_page"))
     if request.method == "POST":
@@ -145,15 +145,26 @@ def add_card_page():
         new_group = groups(name=group_name, lang=group_lang, user_id=user_id)
         db.session.add(new_group)
         db.session.commit()
-        # all_groups = groups.query.all()
-        #
-        # for group in all_groups:
-        #     flash(f"Nazwa: {group.name} Język: {group.lang} User: {group.user_id}", "info")
-        return redirect(url_for("user_page"))
+
+        return redirect(url_for("cards_collection_page"))
 
     else: #method == get
+        login_in_session = session["login"]
+        user_id = users.query.filter_by(login=login_in_session).first().id
+        users_groups = groups.query.filter_by(user_id=user_id).all()
+
         languages = ['Angielski', 'Niemiecki', 'Hiszpański', 'Francuski', 'Włoski', 'Duński',   'Turecki',
                      'Chiński', 'Japoński', 'Holenderski', 'Portugalski', 'Czeski', 'Słowacki', 'Węgierski']
         languages.sort()
 
-        return render_template("cards_collection.html", languages=languages)
+        return render_template("cards_collection.html", languages=languages, groups=users_groups)
+
+@app.route("/delete_group/<index>")
+def delete_group(index):
+    if(index):
+        group = groups.query.filter_by(id=index).first()
+        db.session.delete(group)
+        db.session.commit()
+        return redirect(url_for("cards_collection_page"))
+    else:
+        return redirect(url_for("cards_collection_page"))

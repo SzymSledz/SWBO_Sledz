@@ -34,9 +34,9 @@
 
 
 
-<div class="row justify-content-center">
-    <div class="card col-sm p-0 m-2" style="max-width: 30%">
-        <img src="{{url_for('static', filename='images/new_cards.png')}}"/>
+<div class="row justify-content-start flex-wrap">
+    <div class="card p-0 m-2 " style="width: 20%">
+        <img src="{{url_for('static', filename='images/new_cards.png')}}" class="border-bottom border-3 border-primary"/>
       <div class="card-body p-0">
         <div class="px-3 py-4">
             <h5 class="card-title">Nowa</h5>
@@ -48,19 +48,20 @@
       </div>
     </div>
 
-    {% if cards %}
-        {% for card in cards %}
-          <div class="card col-sm p-0 m-2" style="width: 12rem;">
-            <img src="{{url_for('static', filename='images/learning.png')}}" class="border-top border-bottom border-3 border-primary"/>
+    {% if groups %}
+        {% for card in groups %}
+        <div class="card p-0 m-2 position-relative" style="width: 20%">
+            <a class="position-absolute top-0 end-0 text-decoration-none text-dark" href="/delete_group/{{card.id}}">X</a>
+            <img src="{{url_for('static', filename='images/sticky_note.png')}}" class="border-bottom border-3 border-primary"/>
           <div class="card-body p-0">
             <div class="px-3 py-4">
-                <h5 class="card-title">Ćwicz</h5>
-                <p class="card-text">Wybierz lekcję ze swojej kolekcji i zacznij ćwiczenie.</p>
+                <h5 class="card-title">{{card.name}}</h5>
+                <p class="card-text">{{card.lang}}</p>
             </div>
-            <a href="/add_card" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
+            <a href="#" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przeglądaj</a>
           </div>
-        </div>
         </div>
         {% endfor %}
     {% endif %}
+    </div>
 {% endblock %}
