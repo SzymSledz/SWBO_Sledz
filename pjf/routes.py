@@ -3,7 +3,7 @@ from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from pjf import app
 from pjf import db
-from pjf.models import users
+from pjf.models import users, groups
 
 @app.route("/")
 def main_page():
@@ -64,7 +64,15 @@ def user_page():
         else:
             if "login" in session:
                 login_in_session = session["login"]
-        return render_template("user.html", login=login_in_session)
+
+        user_id = users.query.filter_by(login=login_in_session).first().id
+        users_groups = groups.query.filter_by(user_id=user_id).all()
+        messages = []
+
+        for group in users_groups:
+            message = f"Nazwa: {group.name} Język: {group.lang} User: {group.user_id} Id_w_Sesji: {user_id}"
+            messages.append(message)
+        return render_template("user.html", login=login_in_session, groups=messages)
     else:
         return redirect(url_for("login_page"))
 
@@ -124,3 +132,28 @@ def sign_up_page():
             if "login" in session:  # fill login input if login is in session
                 return render_template("sign_up.html", login=session["login"], error=error)
             return render_template("sign_up.html", login="", error=error)
+
+@app.route("/add_card", methods=["GET", "POST"])
+def add_card_page():
+    if "logged_in" not in session:
+        return redirect(url_for("login_page"))
+    if request.method == "POST":
+        group_name = request.form["name"]
+        group_lang = request.form["lang"]
+        user_id = users.query.filter_by(login=session['login']).first().id # only one exists, login is unique
+
+        new_group = groups(name=group_name, lang=group_lang, user_id=user_id)
+        db.session.add(new_group)
+        db.session.commit()
+        # all_groups = groups.query.all()
+        #
+        # for group in all_groups:
+        #     flash(f"Nazwa: {group.name} Język: {group.lang} User: {group.user_id}", "info")
+        return redirect(url_for("user_page"))
+
+    else: #method == get
+        languages = ['Angielski', 'Niemiecki', 'Hiszpański', 'Francuski', 'Włoski', 'Duński',   'Turecki',
+                     'Chiński', 'Japoński', 'Holenderski', 'Portugalski', 'Czeski', 'Słowacki', 'Węgierski']
+        languages.sort()
+
+        return render_template("cards_collection.html", languages=languages)

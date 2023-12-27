@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}User's Page{% endblock %}
+{% block title %}Fiszki - profil{% endblock %}
 
 {% block content %}
   {% with messages  = get_flashed_messages() %}
@@ -9,6 +9,14 @@
       {% endfor %}
     {% endif %}
   {% endwith %}
+
+    {% if groups %}
+      {% for group in groups %}
+        <p>{{group}}</p>
+      {% endfor %}
+    {% endif %}
+
+
     To strona twojego profilu
     <form action="#" method="post">
         <label>

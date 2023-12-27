@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Fiszki{% endblock %}
+{% block content %}
+
+  <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Stwórz nową grupę wyrazów</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+          <form action="#" method="post">
+            <div class="modal-body">
+              <label for="modal-name" class="form-label">Nazwa grupy:</label>
+              <input type="text" class="form-control" id="modal-name" name="name"/>
+              <label for="modal-lang" class="form-label">Język:</label>
+                <select class="form-select" aria-label="Default select example" id="modal-lang" name="lang">
+                    {% if languages %}
+                        {% for lang in languages %}
+                          <option value={{lang}}>{{lang}}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+              <button type="submit" class="btn btn-primary">Potwierdź</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<div class="row justify-content-center">
+    <div class="card col-sm p-0 m-2" style="max-width: 30%">
+        <img src="{{url_for('static', filename='images/new_cards.png')}}"/>
+      <div class="card-body p-0">
+        <div class="px-3 py-4">
+            <h5 class="card-title">Nowa</h5>
+            <p class="card-text">Stwórz nową grupę wyrazów.</p>
+        </div>
+         <button class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom" data-bs-toggle="modal" data-bs-target="#reg-modal">
+            Dodaj
+         </button>
+      </div>
+    </div>
+
+    {% if cards %}
+        {% for card in cards %}
+          <div class="card col-sm p-0 m-2" style="width: 12rem;">
+            <img src="{{url_for('static', filename='images/learning.png')}}" class="border-top border-bottom border-3 border-primary"/>
+          <div class="card-body p-0">
+            <div class="px-3 py-4">
+                <h5 class="card-title">Ćwicz</h5>
+                <p class="card-text">Wybierz lekcję ze swojej kolekcji i zacznij ćwiczenie.</p>
+            </div>
+            <a href="/add_card" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
+          </div>
+        </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
