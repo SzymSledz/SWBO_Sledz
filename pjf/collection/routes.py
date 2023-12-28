@@ -61,7 +61,8 @@ def group_page(group):
             session.pop('form_error')
         else:
             error = ''
-        return render_template("group.html", group=group, error=error, cards=group_cards)
+        group_name = groups.query.filter_by(id=group).first().name
+        return render_template("group.html", group=group, error=error, cards=group_cards, group_name=group_name)
 
 @collection.route("/delete_group/<group_index>")
 def delete_group(group_index):
