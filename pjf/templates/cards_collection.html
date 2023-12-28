@@ -2,7 +2,7 @@
 {% block title %}Fiszki{% endblock %}
 {% block content %}
 
-  <h2 class="py-5">Twoja kolekcja fiszek</h2>
+  <h2 class="py-5 text-center">Twoja kolekcja fiszek</h2>
   <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -32,11 +32,8 @@
     </div>
   </div>
 
-
-
-
-<div class="row justify-content-start flex-wrap">
-    <div class="card p-0 m-2 " style="width: 20%">
+<div class="row justify-content-start flex-wrap gap-4">
+    <div class="card p-0 m-2" style="width: 22%">
         <img src="{{url_for('static', filename='images/new_cards.png')}}" class="border-bottom border-3 border-primary"/>
       <div class="card-body p-0">
         <div class="px-3 py-4">
@@ -51,8 +48,10 @@
 
     {% if groups %}
         {% for group in groups %}
-        <div class="card p-0 m-2 position-relative" style="width: 20%">
-            <a class="position-absolute top-0 end-0 text-decoration-none text-dark" href="/delete_group/{{group.id}}">X</a>
+        <div class="card p-0 m-2 position-relative" style="width: 22%">
+            <a class="position-absolute text-decoration-none text-dark" href="/delete_group/{{group.id}}" style="top:0%; right: 0%">
+                    <img src="{{url_for('static', filename='images/close_icon.png')}}"/>
+            </a>
             <img src="{{url_for('static', filename='images/sticky_notes5.png')}}" class="border-bottom border-3 border-primary"/>
           <div class="card-body p-0">
             <div class="px-3 py-4">

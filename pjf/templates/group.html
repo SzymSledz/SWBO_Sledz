@@ -9,53 +9,61 @@
   {% endfor %}
 {% endif %}
 {% endwith %}
-<h2>Grupa: {{group_name}}</h2>
 
-    <form action="#" method="post">
-      <div class="form-group mt-3">
-        <label for="form-word"
-            {% if error == 'word' %}
-            class="text-danger"
-            {% endif %}
-            >
-            Podaj słowo</label>
-        <input type="text"
-           {% if error == 'word' %}
-                class="form-control border border-danger"
-           {% else %}
-                class="form-control"
-           {% endif %}
-           id="form-word" name="word" placeholder="Słowo"
-      </div>
-      <div class="form-group mt-3">
-        <label for="passwordInput"
-           {% if error == 'translation' %}
-            class="text-danger"
-            {% endif %}
-          >Podaj jego tłumaczenie</label>
-        <input
-            type="text"
-            {% if error == 'translation' %}
-                class="form-control border border-danger"
-            {% else %}
-                class="form-control"
-            {% endif %}
-            id="passwordInput"
-            name="translation"
-            placeholder="Tłumaczenie"
-          >
-      </div>
-      <button type="submit" class="btn btn-primary mt-3">Zatwierdź</button>
-    </form>
-
-{% if cards %}
-
-  {% for card in cards %}
     <div class="container-fluid">
-        <p>Słowo: {{card.word}} Tłumaczenie: {{card.translation}}</p>
-        <a class=text-decoration-none text-dark" href="/delete_card/{{card.id}}">X</a>
+        <h2 class="text-center">Grupa: {{group_name}}</h2>
+        <form action="#" method="post">
+          <div class="form-group mt-3">
+            <label for="form-word"
+                {% if error == 'word' %}
+                class="text-danger"
+                {% endif %}
+                >
+                Podaj słowo</label>
+            <input type="text"
+               {% if error == 'word' %}
+                    class="form-control border border-danger"
+               {% else %}
+                    class="form-control"
+               {% endif %}
+               id="form-word" name="word" placeholder="Słowo">
+          </div>
+          <div class="form-group mt-3">
+            <label for="passwordInput"
+               {% if error == 'translation' %}
+                class="text-danger"
+                {% endif %}
+              >Podaj jego tłumaczenie</label>
+            <input
+                type="text"
+                {% if error == 'translation' %}
+                    class="form-control border border-danger"
+                {% else %}
+                    class="form-control"
+                {% endif %}
+                id="passwordInput"
+                name="translation"
+                placeholder="Tłumaczenie"
+              >
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Zatwierdź</button>
+        </form>
     </div>
-  {% endfor %}
-{% endif %}
 
+    {% if cards %}
+         <div class="row justify-content-start flex-wrap">
+            {% for card in cards %}
+            <div class="p-0 m-2 position-relative" style="width: 15%">
+                <a class="position-absolute text-decoration-none text-dark" href="/delete_card/{{card.id}}" style="top:20%; right: 0%">
+                    <img src="{{url_for('static', filename='images/close_icon.png')}}"/>
+                </a>
+                <img src="{{url_for('static', filename='images/sticky_note.png')}}"/>
+                <div class="position-absolute text-center " style="top:35%; left: 30%">
+                    <p>Słowo: {{card.word}} </p>
+                    <p>Tłumaczenie: {{card.translation}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

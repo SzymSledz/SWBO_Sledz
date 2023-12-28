@@ -2,10 +2,10 @@
 {% block title %}Fiszki{% endblock %}
 {% block content %}
         {% if groups %}
-            <h2 class="py-5">Wybierz grupę słow z poniższej kolekcji i zacznij lekcję</h2>
-            <div class="row justify-content-start flex-wrap">
+            <h2 class="py-5 text-center">Wybierz grupę słow z poniższej kolekcji i rozpocznij lekcję</h2>
+            <div class="row justify-content-start flex-wrap gap-4">
                 {% for card in groups %}
-                <div class="card p-0 m-2 position-relative" style="width: 20%">
+                <div class="card p-0 m-2 position-relative" style="width: 22%">
                     <img src="{{url_for('static', filename='images/sticky_notes5.png')}}" class="border-bottom border-3 border-primary"/>
                   <div class="card-body p-0">
                     <div class="px-3 py-4">
