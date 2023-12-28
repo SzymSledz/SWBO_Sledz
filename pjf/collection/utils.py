@@ -26,3 +26,20 @@ def delete_groups(group_id):
     db.session.delete(group)
     db.session.commit()
     return 'succes'
+
+
+def delete_cards(card_id, group_id):
+    user = session['login']
+    user_id = users.query.filter_by(login=user).first().id          #user in session
+    owner = groups.query.filter_by(id=group_id).first().user_id     #group owner.id
+
+    if(owner != user_id or not user_id):                     # if user tries to edit not his group
+        return "error"
+    card = cards.query.filter_by(id=card_id).first()
+
+    if not card:
+        return "error"
+
+    db.session.delete(card)
+    db.session.commit()
+    return 'succes'

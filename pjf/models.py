@@ -17,7 +17,6 @@ class groups(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     name = db.Column(db.String(60))
     lang = db.Column(db.String(60))
-    #creation_date = db.Column(db.Datetime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     card = db.relationship("cards", backref="group", lazy=True)
 

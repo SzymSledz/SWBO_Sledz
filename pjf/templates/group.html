@@ -10,14 +10,6 @@
 {% endif %}
 {% endwith %}
 
-{% if cards %}
-  {% for card in cards %}
-    <div class="container-fluid">
-        <p>Słowo: {{card.word}} Tłumaczenie: {{card.translation}}</p>
-        <a class=text-decoration-none text-dark" href="#">X</a>
-    </div>
-  {% endfor %}
-{% endif %}
 
     <form action="#" method="post">
       <div class="form-group mt-3">
@@ -55,4 +47,14 @@
       </div>
       <button type="submit" class="btn btn-primary mt-3">Zatwierdź</button>
     </form>
+
+{% if cards %}
+  {% for card in cards %}
+    <div class="container-fluid">
+        <p>Słowo: {{card.word}} Tłumaczenie: {{card.translation}}</p>
+        <a class=text-decoration-none text-dark" href="/delete_card/{{card.id}}">X</a>
+    </div>
+  {% endfor %}
+{% endif %}
+
 {% endblock %}

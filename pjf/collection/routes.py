@@ -5,7 +5,7 @@ from pjf import app
 from pjf import db
 from pjf.models import users, groups, cards
 from pjf.main import *
-from pjf.collection.utils import delete_groups
+from pjf.collection.utils import delete_groups, delete_cards
 
 collection = Blueprint('collection', __name__)
 
@@ -35,19 +35,6 @@ def cards_collection_page():
 
         return render_template("cards_collection.html", languages=languages, groups=users_groups)
 
-@collection.route("/delete_group/<group_index>")
-def delete_group(group_index):
-    if(group_index):    # group index - group to be deleted
-        if "logged_in" not in session:
-            return redirect(url_for("user.login_page"))
-
-        delete_groups(group_index)
-
-        return redirect(url_for("collection.cards_collection_page"))
-
-    else:
-        return redirect(url_for("collection.cards_collection_page"))
-
 @collection.route("/group/<group>", methods=["GET", "POST"])
 def group_page(group):
     if "logged_in" not in session:
@@ -75,3 +62,25 @@ def group_page(group):
         else:
             error = ''
         return render_template("group.html", group=group, error=error, cards=group_cards)
+
+@collection.route("/delete_group/<group_index>")
+def delete_group(group_index):
+    if (group_index):  # group index - group to be deleted
+        if "logged_in" not in session:
+            return redirect(url_for("user.login_page"))
+
+        delete_groups(group_index)  # delete group function -> util.py
+
+    return redirect(url_for("collection.cards_collection_page"))
+
+@collection.route("/delete_card/<card_index>")
+def delete_card(card_index):
+
+    if (card_index):  # card index - card to be deleted
+        if "logged_in" not in session:
+            return redirect(url_for("user.login_page"))
+
+        group_id = cards.query.filter_by(id=card_index).first().group.id
+        delete_cards(card_index, group_id)  # delete card function -> util.py
+
+    return redirect(url_for("collection.group_page", group=group_id))
