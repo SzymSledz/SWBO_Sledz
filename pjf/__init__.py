@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.secret_key = "@$FA@Tzw$t@^BBsehwy23626g"
-#app.secret_key = "@$FA@Tzw$t"
 app.permanent_session_lifetime = timedelta(hours = 2)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
