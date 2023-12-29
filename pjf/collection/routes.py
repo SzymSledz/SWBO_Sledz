@@ -70,8 +70,13 @@ def delete_group(group_index):
         if "logged_in" not in session:
             return redirect(url_for("user.login_page"))
 
+        # if session["delete_confirmed"] and session["group_delete"]:
         delete_groups(group_index)  # delete group function -> util.py
-
+        #     session["delete_confirmed"] = False
+        #     session.pop("group_delete")
+        # else:
+        #     session["group_delete"] = group_index
+        #     return redirect(url_for("collection.cards_collection_page"))
     return redirect(url_for("collection.cards_collection_page"))
 
 @collection.route("/delete_card/<card_index>")

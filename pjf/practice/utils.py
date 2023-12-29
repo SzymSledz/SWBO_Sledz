@@ -37,3 +37,10 @@ def check_answer(card_id, answer):
                 return 'wrong'
             mistake = True
     return 'nearly'
+
+
+# def calc_score(card_id, answer):
+#     score = correct_answers/ len(form)
+#
+#
+#     db.commit()
