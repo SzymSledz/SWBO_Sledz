@@ -1,21 +1,34 @@
 {% extends "base.html" %}
 {% block title %}Fiszki - Statystki profilu{% endblock %}
 {% block content %}
+<div class="stats">
+
+    <div class="border border-2 border-primary rounded my-3 p-3 user misc-stats">User</div>
+
+    <div class="d-flex flex-row justify-content-between">
+        <div class="border border-2 border-primary rounded my-3 p-3 top-lang misc-stats">Ulubiony język</div>
+        <div class="border border-2 border-primary rounded my-3 p-3 completion misc-stats">% Poprawnych</div>
+        <div class="border border-2 border-primary rounded my-3 p-3 learned-words misc-stats">Poznane Słowa</div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-between">
+        <div class="border border-2 border-primary rounded my-3 p-3 top-lang misc-stats">Wykonane Lekcje</div>
+        <div class="border border-2 border-primary rounded my-3 p-3 completion misc-stats">???</div>
+    </div>
 
 
-
-
+    <h2 class="text-primary">Statystyki poszczególnych lekcji</h2>
      {% if groups %}
         {% for group in groups %}
-            <div class="d-flex w-100 justify-content-between" >
-                <div>
+            <div class="d-flex w-100 justify-content-between border bg-primary rounded my-4 align-items-center p-3 group-stats" >
+                <div class="lang">
                     <img src="{{url_for('static', filename='images/close_icon.png')}}"/>
-                    {{group.lang}}
+                    <p class="d-inline px-2">{{group.lang}}</p>
                 </div>
                 <div>{{group.name}}</div>
                 <div>{{group.completion}} %</div>
             </div>
         {% endfor %}
     {% endif %}
-
+</div>
 {% endblock %}

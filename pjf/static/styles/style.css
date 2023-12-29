@@ -6,3 +6,33 @@
     width: 70%;
     margin: 0 auto;
 }
+
+.stats{
+    width: 65%;
+    margin: 0 auto;
+}
+
+.stats .user{
+    width: 30%;
+}
+
+.stats .group-stats *{
+    color: #fff;
+}
+
+.stats .group-stats > div{
+    min-width: 15%;
+    text-align: center;
+}
+
+.stats .flex-row:nth-child(2) > div{
+    width: 30%;
+}
+
+.stats .flex-row:nth-child(3) > div{
+    width: 48%;
+}
+
+.stats .misc-stats{
+    text-align: center;
+}
