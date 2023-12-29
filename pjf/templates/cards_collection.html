@@ -54,7 +54,19 @@
                 <img src="{{url_for('static', filename='images/close_icon.png')}}"/>
                 </a>
                 <img src="{{url_for('static', filename='images/sticky_notes5.png')}}" class="border-bottom border-3 border-primary w-100"/>
-                <p class="text position-absolute bottom-0 end-0">{{group.completion}}</p>
+                <p
+                    {% if group.completion < 50 %}
+                        class="text-secondary position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                    {% elif group.completion < 70 %}
+                        class="text-warning position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                    {% else %}
+                        class="text-success position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                    {% endif %}
+                >
+
+
+
+                    {{group.completion}} %</p>
             </div>
             <div class="card-body p-0">
                 <div class="px-3 py-4">

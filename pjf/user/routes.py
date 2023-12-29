@@ -140,3 +140,14 @@ def logout_page():
     session.pop("group_delete", None)
     flash("Zostałeś poprawnie wylogowany!", "info")
     return redirect(url_for("user.login_page"))
+
+
+@user.route("/stats")
+def stats_page():
+    if "logged_in" not in session:
+        return redirect(url_for("login.login_page"))
+
+    user_id = users.query.filter_by(login=session["login"]).first().id
+    users_groups=groups.query.filter_by(user_id=user_id).all()
+
+    return render_template("stats.html", groups=users_groups)
