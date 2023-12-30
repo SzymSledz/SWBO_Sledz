@@ -138,7 +138,8 @@ def logout_page():
     session.pop("sign_up_error", None)
     session.pop("delete_confirmed", None)
     session.pop("group_delete", None)
-    flash("Zostałeś poprawnie wylogowany!", "info")
+    session.pop("results", None)
+    flash(f"Zostałeś poprawnie wylogowany!", "info")
     return redirect(url_for("user.login_page"))
 
 

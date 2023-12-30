@@ -20,6 +20,7 @@ class groups(db.Model):
     completion = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     card = db.relationship("cards", backref="group", lazy=True)
+    lesson = db.relationship("lessons", backref="group", lazy=True)
 
 
 class cards(db.Model):
@@ -27,3 +28,10 @@ class cards(db.Model):
     word = db.Column(db.String(60))
     translation = db.Column(db.String(60))
     group_id = db.Column(db.Integer, db.ForeignKey("groups.id"))
+
+class lessons(db.Model):
+    id = db.Column("id", db.Integer, primary_key=True)
+    completion = db.Column(db.String(60))
+    date = db.Column(db.DateTime)
+    group_id = db.Column(db.Integer, db.ForeignKey("groups.id"))
+

@@ -1,26 +1,28 @@
 {% extends "base.html" %}
 {% block title %}Fiszki - Statystki profilu{% endblock %}
 {% block content %}
+<h2 class="text-primary py-5 stats-header">Statystyki twojego profilu</h2>
+
 <div class="stats">
 
-    <div class="border border-2 border-primary  my-3 px-3 py-2 user misc-stats">
-        <img src="{{url_for('static', filename='images/user_icon.png')}}" class="lang-icon"/>
-        User
+    <div class="border border-2 border-primary  my-2 px-3 py-2 user misc-stats mx-auto w-100">
+        <img src="{{url_for('static', filename='images/user_icon.png')}}" class="lang-icon px-2"/>
+        {{session["login"]}}
     </div>
 
     <div class="d-flex flex-row justify-content-between">
-        <div class="border border-2 border-primary  my-3 p-3 top-lang misc-stats">Ulubiony język</div>
-        <div class="border border-2 border-primary  my-3 p-3 completion misc-stats">% Poprawnych</div>
-        <div class="border border-2 border-primary  my-3 p-3 learned-words misc-stats">Poznane Słowa</div>
+        <div class="border border-2 border-primary  my-2 p-3 completion misc-stats">Wykonałeś X lekcji</div>
+        <div class="border border-2 border-primary  my-2 p-3 days misc-stats">Uczyłeś się przez X dni</div>
+        <div class="border border-2 border-primary  my-2 p-3 learned-words misc-stats">Poznałeś  X  słów </div>
     </div>
 
     <div class="d-flex flex-row justify-content-between">
-        <div class="border border-2 border-primary  my-3 p-3 top-lang misc-stats">Wykonane Lekcje</div>
-        <div class="border border-2 border-primary  my-3 p-3 completion misc-stats">???</div>
+        <div class="border border-2 border-primary  my-2 p-3 top-lang misc-stats">Odpowiadasz ze skutecznością: X</div>
+        <div class="border border-2 border-primary  my-2 p-3 completion misc-stats">Twój ulubiony jezyk to: </div>
     </div>
 
 
-    <h2 class="text-primary">Statystyki poszczególnych lekcji</h2>
+    <h2 class="text-primary pt-5 pb-2">Statystyki poszczególnych lekcji</h2>
      {% if groups %}
         {% for group in groups %}
             <div class="d-flex w-100 justify-content-between border bg-primary rounded my-4 align-items-center p-3 group-stats" >

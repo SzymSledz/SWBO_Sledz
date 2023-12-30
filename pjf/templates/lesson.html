@@ -5,21 +5,38 @@
 <div class="lesson">
 
 {% if cards %}
-<div class=" position-relative">
-    <form action="#" method="post" class="d-flex align-items-center flex-column w-100 position-relative">
-        {% for card in cards %}
-            <div class="position-relative card-wrapper">
-              <img src="{{url_for('static', filename='images/sticky_notes1.png')}}" class="w-100"/>
-              <div class="position-relative text-center card-text">
-                <p class="text-primary">Słowo: {{card.word}}</p>
-                <p class="text-primary">Tłumaczenie: {{card.translation}}</p>
-                <input type="text" class="form-control transparent-input w-50 text-center" id="card-{{card.id}}" name="answer{{card.id}}"/>
-              </div>
-            </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary submit-btn">Zakończ lekcję</button>
-    </form>
-</div>
+    {% if not results %}
+    <div class=" position-relative">
+        <form action="#" method="post" class="d-flex align-items-center flex-column w-100 position-relative">
+            {% for card in cards %}
+                <div class="position-relative card-wrapper">
+                  <img src="{{url_for('static', filename='images/sticky_notes1.png')}}" class="w-100"/>
+                  <div class="position-relative text-center card-text">
+                    <p class="text-primary">Słowo: {{card.word}}</p>
+                    <input type="text" class="form-control transparent-input w-50 text-center" id="card-{{card.id}}" name="answer{{card.id}}"/>
+                  </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary submit-btn">Zakończ lekcję</button>
+        </form>
+    </div>
+    {% else %}
+    <div class=" position-relative">
+        <div class="d-flex align-items-center flex-column w-100 position-relative">
+            {% for i in range(cards | length) %}
+                <div class="position-relative card-wrapper">
+                  <img src="{{url_for('static', filename='images/sticky_notes1.png')}}" class="w-100"/>
+                  <div class="position-relative text-center card-text">
+                    <p class="text-primary">Słowo: {{cards[i].word}}</p>
+                    <p class="text-primary">Tłumaczenie: {{cards[i].translation}}</p>
+                    <p class="text-primary">{{results[i]}}</p>
+                    <p class="text-primary">{{answers[i]}}</p>
+                  </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
   {% else %}
          <h2 class="py-2">Pusto...</h2>
          <h4 class="py-2">Przejdź do swojej kolekcji, aby dodać słowa do lekcji</h4>
