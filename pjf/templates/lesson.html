@@ -1,34 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Fiszki - lekcja{% endblock %}
 {% block content %}
-  {% if cards %}
 
-        <form action="#" method="post">
-            <div class="form-body">
-              <label for="modal-name" class="form-label">Podaj odpowiedź na pierwsze słowo:</label>
-              <input type="text" class="form-control" id="modal-name" name="answer"/>
-              <button type="submit" class="btn btn-primary">Potwierdź</button>
+<div class="lesson">
+
+{% if cards %}
+<div class=" position-relative">
+    <form action="#" method="post" class="d-flex align-items-center flex-column w-100 position-relative">
+        {% for card in cards %}
+            <div class="position-relative card-wrapper">
+              <img src="{{url_for('static', filename='images/sticky_notes1.png')}}" class="w-100"/>
+              <div class="position-relative text-center card-text">
+                <p class="text-primary">Słowo: {{card.word}}</p>
+                <p class="text-primary">Tłumaczenie: {{card.translation}}</p>
+                <input type="text" class="form-control transparent-input w-50 text-center" id="card-{{card.id}}" name="answer{{card.id}}"/>
+              </div>
             </div>
-        </form>
-
-
-    {% for card in cards %}
-      <div class="d-flex justify-content-center position-relative">
-          <img src="{{url_for('static', filename='images/sticky_notes1.png')}}" style="width:30%" />
-          <div class="position-absolute text-center " style="top:35%">
-            <p class="text-primary">Słowo: {{card.word}}</p>
-            <p class="text-primary">Tłumaczenie: {{card.translation}}</p>
-            <input type="text" class="form-control transparent-input" id="card-{{card.id}}" name="answer"/>
-          </div>
-
-         <input type="hidden" name="word" value="bar" />
-      </div>
-
-
-    {% endfor %}
+        {% endfor %}
+        <button type="submit" class="btn btn-primary submit-btn">Zakończ lekcję</button>
+    </form>
+</div>
   {% else %}
          <h2 class="py-2">Pusto...</h2>
-         <h4 class="py-2">Przejdź do swojej kolekcji, aby dodać pierwsze lekcje</h4>
+         <h4 class="py-2">Przejdź do swojej kolekcji, aby dodać słowa do lekcji</h4>
          <a href="/cards_collection" class="btn btn-primary mt-10 rounded-0 rounded-bottom rounded-top my-2">Przejdź do kolekcji<img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
   {% endif %}
+</div>
 {% endblock %}

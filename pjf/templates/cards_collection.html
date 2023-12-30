@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Fiszki{% endblock %}
 {% block content %}
+<div class="groups">
 
-  <h2 class="py-5 text-center">Twoja kolekcja fiszek</h2>
+  <h1 class="py-5 text-center text-primary">Twoja kolekcja fiszek</h1>
   <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -53,6 +54,7 @@
                 <a class="position-absolute text-decoration-none text-dark" href="/delete_group/{{group.id}}" style="top:0%; right: 0%">
                 <img src="{{url_for('static', filename='images/close_icon.png')}}"/>
                 </a>
+                <img src="{{url_for('static', filename='images/languages/' + group.lang + '.png')}}" class="lang-icon"/>
                 <img src="{{url_for('static', filename='images/sticky_notes5.png')}}" class="border-bottom border-3 border-primary w-100"/>
                 <p
                     {% if group.completion < 50 %}
@@ -76,4 +78,5 @@
         {% endfor %}
     {% endif %}
     </div>
+</div>
 {% endblock %}

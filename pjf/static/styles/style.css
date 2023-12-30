@@ -21,7 +21,7 @@
 }
 
 .stats .group-stats > div{
-    min-width: 15%;
+    min-width: 20%;
     text-align: center;
 }
 
@@ -35,4 +35,40 @@
 
 .stats .misc-stats{
     text-align: center;
+    color: #0d6efd;
+    font-weight: 600;
+    border-radius: 20px 20px;
+}
+
+.practice .lang-icon,
+.groups .lang-icon{
+    position: absolute;
+    top: 40%;
+    left: 42%;
+    width: 20%;
+}
+
+.lesson,
+.stats{
+    font-weight: 600!important;
+}
+
+.lesson .card-text{
+    margin-top: -70%;
+}
+
+.lesson .card-wrapper{
+    width: 37%;
+    margin-bottom: 10%;
+}
+
+.lesson input:focus{
+    background: transparent!important;
+    border: none!important;
+}
+
+.lesson .submit-btn{
+    z-index: 3;
+    margin: 7% auto;
+    width: 24%;
 }
