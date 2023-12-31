@@ -13,7 +13,7 @@
 
           {% if session["logged_in"]%}
               <div class="d-inline-flex justify-content-end">
-                <a class="navbar-brand" href="/login">Mój profil</a>
+                <a class="navbar-brand" href="/stats">Mój profil</a>
                 <a class="navbar-brand mw-100" href="/logout"><img src="{{url_for('static', filename='images/logout_icon.png')}}"/></a>
               </div>
           {% else %}

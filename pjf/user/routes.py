@@ -12,7 +12,7 @@ user = Blueprint('user', __name__)
 @user.route("/login", methods=["GET", "POST"])
 def login_page():
     if "logged_in" in session:
-        return redirect(url_for("user.user_page"))
+        return redirect(url_for("main.main_page"))
     if "login_failed" not in session:
         session["login_failed"] = False
     if request.method == "POST":
@@ -29,7 +29,7 @@ def login_page():
 
             if user_password == user_in_db_password:
                 session["logged_in"] = True  # if login is succesfull
-                return redirect(url_for("user.user_page"))
+                return redirect(url_for("main_page"))
             else:
                 #failed to login
                 session["login_failed"] = True
@@ -54,7 +54,7 @@ def login_page():
 @user.route("/sign_up", methods=["GET", "POST"])
 def sign_up_page():
     if "logged_in" in session:
-        return redirect(url_for("user.user_page"))
+        return redirect(url_for("main_page"))
     if request.method == "POST":
         session.permanent = True
         user_login = request.form["login"]
@@ -89,10 +89,10 @@ def sign_up_page():
             db.session.commit()
             session["logged_in"] = True  # if user is succesfull
             flash("Zostałeś poprawnie zarejestrowany!", "info")
-            return redirect(url_for("user.user_page"))
+            return redirect(url_for("main_page"))
     else:
         if "logged_in" in session:  # already logged in - redirect
-            return redirect(url_for("user.user_page"))
+            return redirect(url_for("main_page"))
         else:
             if "sign_up_error" in session:
                 error = session["sign_up_error"]

@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Fiszki{% endblock %}
 {% block content %}
+<div class="home">
 <div class="row justify-content-center">
 
     <h1 class="text-center text-primary">Witaj na głównej stronie Fiszek</h1>
-    <h4 class="text-center px-5 py-2" style="color:#0da1fd">Dzięki tej aplikacji przyswoisz słówa w obcym jęzku w błyskawiczny sposób, a dzięki panelowi statystyk możesz kontrolować swoje postępy.</h4>
+    <h4 class="text-center px-5 py-2 text-primary">Dzięki tej aplikacji przyswoisz słówa w obcym jęzku w błyskawiczny sposób, a dzięki panelowi statystyk możesz kontrolować swoje postępy.</h4>
     <div class="card col-sm p-0 m-2" style="width: 12rem;">
         <img src="{{url_for('static', filename='images/learning.png')}}" class="border-top border-bottom border-3 border-primary"/>
       <div class="card-body p-0">
@@ -35,5 +36,6 @@
         <a href="/stats" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100 m-10" /></a>
       </div>
     </div>
+</div>
 </div>
 {% endblock %}

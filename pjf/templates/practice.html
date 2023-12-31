@@ -12,11 +12,11 @@
                     <img src="{{url_for('static', filename='images/languages/' + card.lang + '.png')}}" class="lang-icon"/>
                     <p
                     {% if card.completion < 50 %}
-                        class="text-secondary position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                        class="text-secondary position-absolute bottom-0 end-0 px-2 completion"
                     {% elif card.completion < 70 %}
-                        class="text-warning position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                        class="text-warning position-absolute bottom-0 end-0 px-2 completion"
                     {% else %}
-                        class="text-success position-absolute bottom-0 end-0 px-2 font-weight-bold"
+                        class="text-success position-absolute bottom-0 end-0 px-2 completion"
                     {% endif %}
                     >
                     {{card.completion}} %</p>
