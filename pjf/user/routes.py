@@ -88,7 +88,6 @@ def sign_up_page():
             db.session.add(new_user)
             db.session.commit()
             session["logged_in"] = True  # if user is succesfull
-            flash("Zostałeś poprawnie zarejestrowany!", "info")
             return redirect(url_for("main_page"))
     else:
         if "logged_in" in session:  # already logged in - redirect
