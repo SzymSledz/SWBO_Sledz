@@ -28,10 +28,24 @@
                 <div class="position-relative card-wrapper">
                   <img src="{{url_for('static', filename='images/sticky_notes1.png')}}" class="w-100"/>
                   <div class="position-relative text-center card-text">
+                      {% if results[i] == "nearly" %}
+                        <p class="text-primary text-success">
+                            <u>Dobra odpowiedź, z literówką</u>
+                        </p>
+                      {% elif results[i] == "correct" %}
+                        <p class="text-primary text-success">
+                            <u>Dobra odpowiedź!</u>
+                        </p>
+                      {% else %}
+                         <p class="text-primary text-danger">
+                            <u>Zła odpowiedź :(</u>
+                        </p>
+                      {% endif %}
                     <p class="text-primary">Słowo: {{cards[i].word}}</p>
-                    <p class="text-primary">Tłumaczenie: {{cards[i].translation}}</p>
-                    <p class="text-primary">{{results[i]}}</p>
-                    <p class="text-primary">{{answers[i]}}</p>
+                      {% if results[i] != "correct" %}
+                        <p class="text-primary">Poprawna odpowiedź: {{cards[i].translation}}</p>
+                      {% endif %}
+                      <p class="text-primary">Twoja odpowiedź: {{answers[i]}}</p>
                   </div>
                 </div>
             {% endfor %}
