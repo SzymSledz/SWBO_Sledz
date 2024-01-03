@@ -52,9 +52,9 @@
         </form>
     </div>
 
-    {% if cards %}
     <div class="board">
-        <img src="{{url_for('static', filename='images/pin_board.jpg')}}" class="board-img"/>
+    <img src="{{url_for('static', filename='images/pin_board.jpg')}}" class="board-img"/>
+    {% if cards %}
          <div class="row justify-content-start flex-wrap">
             {% for card in cards %}
             <div class="p-0 m-3 position-relative" style="width: 15%">
@@ -69,7 +69,8 @@
             </div>
             {% endfor %}
         </div>
-    </div>
+
     {% endif %}
+    </div>
 </div>
 {% endblock %}

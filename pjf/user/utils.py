@@ -19,7 +19,7 @@ def count_completion(user_login):
     for group in user_groups:
         result += group.completion
 
-    return result/len(user_groups)
+    return round(result/len(user_groups),2)
 
 def count_words(user_login):
     user_id = get_user_id(user_login)
