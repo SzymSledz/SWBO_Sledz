@@ -86,6 +86,22 @@
     color: #000;
     font-weight: 600;
 }
+.home{
+    max-width: 1400px;
+    .d-flex{
+        width: 100%;
+        .card{
+            flex-basis: 30%;
+            @media (max-width: 991px){
+                flex-basis: 45%;
+            }
+
+            .card-body > div{
+                min-height: 140px;
+            }
+        }
+    }
+}
 
 .group form{
     max-width: 40%;

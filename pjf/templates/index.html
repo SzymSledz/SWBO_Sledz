@@ -4,37 +4,70 @@
 <div class="home">
 <div class="row justify-content-center">
 
-    <h1 class="text-center text-primary">Witaj na głównej stronie</h1>
-    <h4 class="text-center px-5 py-2 text-primary">Dzięki tej aplikacji przyswoisz słówa w obcym jęzku w błyskawiczny sposób, a dzięki panelowi statystyk możesz kontrolować swoje postępy.</h4>
-    <div class="card col-sm p-0 m-2" style="width: 12rem;">
-        <img src="{{url_for('static', filename='images/learning.png')}}" class="border-top border-bottom border-3 border-primary"/>
-      <div class="card-body p-0">
-        <div class="px-3 py-4">
-            <h5 class="card-title">Ćwicz</h5>
-            <p class="card-text">Wybierz lekcję ze swojej kolekcji i zacznij ćwiczenie.</p>
+    <h1 class="text-center text-primary">Witaj na stronie głównej</h1>
+    <h4 class="text-center px-5 py-2 text-primary">Dzięki tej aplikacji możesz tworzyć własne notatki, uczyć się słówek w obych językach, a dzięki sekcji artykułów poznasz metody na efektywną naukę</h4>
+
+    <div class="d-flex flex-wrap">
+        <div class="card col-sm p-0 m-2">
+            <img src="{{url_for('static', filename='images/notes.jpg')}}" class="border-top border-bottom border-3 border-primary"/>
+          <div class="card-body p-0">
+            <div class="px-3 py-4">
+                <h5 class="card-title">Notatki</h5>
+                <p class="card-text">Twórz notatki i ucz się z nich</p>
+            </div>
+            <a href="/practice" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
+          </div>
         </div>
-        <a href="/practice" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
-      </div>
-    </div>
-    <div class="card col-sm p-0 m-2" style="width: 12rem;">
-        <img src="{{url_for('static', filename='images/sticky_notes_box.png')}}" class="border-bottom border-top border-3 border-primary"/>
-      <div class="card-body p-0">
-        <div class="px-3 py-4">
-            <h5 class="card-title">Przeglądaj kolekcję</h5>
-            <p class="card-text">Przejrzyj lub edytuj swoją kolekcję fiszek.</p>
+        <div class="card col-sm p-0 m-2">
+            <img src="{{url_for('static', filename='images/calendar.jpg')}}" class="border-bottom border-top border-3 border-primary"/>
+          <div class="card-body p-0">
+            <div class="px-3 py-4">
+                <h5 class="card-title">Kalendarz</h5>
+                <p class="card-text">Planuj wydarzenia we własnym kalendarzu</p>
+            </div>
+            <a href="/cards_collection" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
+          </div>
         </div>
-        <a href="/cards_collection" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
-      </div>
-    </div>
-    <div class="card col-sm p-0 m-2" style="width: 12rem;">
-        <img src="{{url_for('static', filename='images/graph.png')}}" class="border-bottom border-top border-3 border-primary"/>
-      <div class="card-body p-0">
-        <div class="px-3 py-4">
-            <h5 class="card-title">Statystyki</h5>
-            <p class="card-text">Sprawdź swoj postępy w nauce.</p>
+        <div class="card col-sm p-0 m-2">
+            <img src="{{url_for('static', filename='images/articles.jpg')}}" class="border-bottom border-top border-3 border-primary"/>
+          <div class="card-body p-0">
+            <div class="px-3 py-4">
+                <h5 class="card-title">Metody Efektywnej Nauki</h5>
+                <p class="card-text">Sprawdź sposoby na efektywną naukę w przygotowanych przez nas artykułach</p>
+            </div>
+            <a href="/article" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100 m-10" /></a>
+          </div>
         </div>
-        <a href="/article" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100 m-10" /></a>
-      </div>
+        <div class="card col-sm p-0 m-2" >
+            <img src="{{url_for('static', filename='images/learning.png')}}" class="border-top border-bottom border-3 border-primary"/>
+          <div class="card-body p-0">
+            <div class="px-3 py-4">
+                <h5 class="card-title">Ucz się Słówek</h5>
+                <p class="card-text">Wybierz lekcję ze swojej kolekcji słowek i zacznij ćwiczenie.</p>
+            </div>
+            <a href="/practice" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
+          </div>
+        </div>
+        <div class="card col-sm p-0 m-2">
+            <img src="{{url_for('static', filename='images/sticky_notes_box.png')}}" class="border-bottom border-top border-3 border-primary"/>
+          <div class="card-body p-0">
+            <div class="px-3 py-4">
+                <h5 class="card-title">Edytuj kolekcję słowek</h5>
+                <p class="card-text">Przeglądaj, dodaj, lub usuń słówka ze swojej kolekcji</p>
+            </div>
+            <a href="/cards_collection" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
+          </div>
+        </div>
+        <div class="card col-sm p-0 m-2">
+            <img src="{{url_for('static', filename='images/graph.png')}}" class="border-bottom border-top border-3 border-primary"/>
+          <div class="card-body p-0">
+            <div class="px-3 py-4">
+                <h5 class="card-title">Postępy w nauce</h5>
+                <p class="card-text">Sprawdź statystyki swoich postępów w nauce słówek.</p>
+            </div>
+            <a href="/stats" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przejdź <img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100 m-10" /></a>
+          </div>
+        </div>
     </div>
 </div>
 </div>
