@@ -35,3 +35,9 @@ class lessons(db.Model):
     date = db.Column(db.DateTime)
     group_id = db.Column(db.Integer, db.ForeignKey("groups.id"))
 
+class articles(db.Model):
+    id = db.Column("id", db.Integer, primary_key=True)
+    title = db.Column(db.String(100))
+    date = db.Column(db.DateTime)
+    text = db.Column(db.String(2000))
+

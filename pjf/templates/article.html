@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Artykuły{% endblock %}
+
+{% block content %}
+    <h2 class="text-primary py-5">Artykuły</h2>
+
+    {% if 'login' in session and session['login'] == 'admin' %}
+        <div class="mb-4">
+            <a href="{{ url_for('article.add_article') }}" class="btn btn-primary">Dodaj Artykuł</a>
+        </div>
+    {% endif %}
+
+    <div class="list-group">
+        {% for article in articles %}
+            <div class="list-group-item mb-4">
+                <h3 class="list-group-item-heading">{{ article.title }}</h3>
+                <p class="text-muted"><em>{{ article.date.strftime('%Y-%m-%d %H:%M:%S') }}</em></p>
+                <p class="list-group-item-text">{{ article.text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
