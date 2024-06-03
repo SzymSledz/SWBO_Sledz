@@ -160,3 +160,15 @@
 .board{
     margin-top: 10%;
 }
+
+.btn-see-more{
+    margin-left: auto;
+    display: block;
+    margin-top: -20px;
+    margin-right: 1rem;
+}
+
+.list-group .list-group-item{
+    border-top-width: 1px;
+    padding: 1rem 1.5rem;
+}

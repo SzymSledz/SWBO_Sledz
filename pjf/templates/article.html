@@ -20,7 +20,7 @@
                     {% if article.text|length > 70 %}
                         <span id="dots-{{ article.id }}">...</span>
                         <span id="more-{{ article.id }}" style="display:none;">{{ article.text[70:] }}</span>
-                        <button onclick="toggleText({{ article.id }})" class="btn btn-outline-primary btn-sm" id="myBtn-{{ article.id }}">Zobacz więcej</button>
+                        <button onclick="toggleText({{ article.id }})" class="btn btn-outline-primary btn-sm btn-see-more" id="myBtn-{{ article.id }}">Zobacz więcej</button>
                     {% endif %}
                 </p>
             </div>
