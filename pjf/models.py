@@ -41,3 +41,12 @@ class articles(db.Model):
     date = db.Column(db.DateTime)
     text = db.Column(db.String(2000))
 
+class calendarEvent(db.Model):
+    id = db.Column("id", db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+
+
