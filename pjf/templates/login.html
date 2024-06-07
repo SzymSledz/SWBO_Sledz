@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Fiszki - logowanie{% endblock %}
+
+{% block content %}
+  {% with messages  = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <h1>Zaloguj się</h1>
+  <form action="#" method="post">
+    {% if login_failed %}
+      <p class="text-danger">Taki użytkownik nie istnieje, lub wpisano złe hasło</p>
+    {% endif %}
+    <div class="form-group mt-3">
+      <label
+         {% if login_failed %}
+         class="text-danger"
+         {% endif %}
+         for="loginInput"
+      >
+        Wpisz login
+      </label>
+      <input type="text"
+         {% if login_failed %}
+         class="form-control border border-danger"
+         {% else %}
+         class="form-control"
+         {% endif %}
+         id="loginInput" name="login" aria-describedby="emailHelp" placeholder="Login" value="{{login if login}}"
+      >
+    </div>
+    <div class="form-group mt-3">
+      <label
+         {% if login_failed %}
+         class="text-danger"
+         {% endif %}
+         for="passwordInput"
+      >
+        Wpisz hasło
+      </label>
+      <input type="password"
+         {% if login_failed %}
+         class="form-control border border-danger"
+         {% else %}
+         class="form-control"
+         {% endif %}
+         id="passwordInput" name="password" placeholder="*****" value="{{password if password}}">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Zatwierdź</button>
+  </form>
+{% endblock %}

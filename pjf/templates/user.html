@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Fiszki - profil{% endblock %}
+
+{% block content %}
+  {% with messages  = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+    {% if groups %}
+      {% for group in groups %}
+        <p>{{group}}</p>
+      {% endfor %}
+    {% endif %}
+
+
+    To strona twojego profilu
+    <form action="#" method="post">
+        <label>
+            Email
+        </label>
+        <input type="text" name="login" placeholder="Enter your login" value="{{login if login}}"/>
+        <input type="submit" value="Submit">
+    </form>
+    <div>
+        <p></p>
+    </div>
+{% endblock %}

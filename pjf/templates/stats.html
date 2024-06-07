@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Fiszki - Statystki profilu{% endblock %}
+{% block content %}
+<h2 class="text-primary py-5 stats-header">Statystyki twojego profilu</h2>
+
+<div class="stats">
+
+    <div class="border border-2 border-primary  my-2 px-3 py-2 user misc-stats mx-auto w-100">
+        <img src="{{url_for('static', filename='images/user_icon.png')}}" class="lang-icon px-2"/>
+        {{session["login"]}}
+    </div>
+
+    <div class="d-flex flex-row justify-content-between">
+        <div class="border border-2 border-primary  my-2 p-3 completion misc-stats">
+            Wykonałeś {{lessons}}
+            {% if lessons < 5 %}
+                lekcje
+            {% else %}
+                lekcji
+            {% endif %}
+        </div>
+        <div class="border border-2 border-primary  my-2 p-3 days misc-stats">Uczyłeś się przez {{days}} dni</div>
+        <div class="border border-2 border-primary  my-2 p-3 learned-words misc-stats">
+            Poznałeś {{words}}
+            {% if words < 6 %}
+                słowa
+            {% else %}
+                słów
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-between">
+        <div class="border border-2 border-primary  my-2 p-3 top-lang misc-stats">Odpowiadasz ze skutecznością: {{completion}} %</div>
+        <div class="border border-2 border-primary  my-2 p-3 completion misc-stats">Twój ulubiony jezyk to: {{lang}}</div>
+    </div>
+
+
+    <h2 class="text-primary pt-5 pb-2">Statystyki poszczególnych lekcji</h2>
+     {% if groups %}
+        {% for group in groups %}
+            <div class="d-flex w-100 justify-content-between border bg-primary rounded my-4 align-items-center p-3 group-stats" >
+                <div class="lang">
+                    <img src="{{url_for('static', filename='images/languages_mini/' + group.lang + '.png')}}" class="lang-icon"/>
+                    <p class="d-inline px-2">{{group.lang}}</p>
+                </div>
+                <div>{{group.name}}</div>
+                <div>{{group.completion}} %</div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

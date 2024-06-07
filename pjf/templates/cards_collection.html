@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Fiszki{% endblock %}
+{% block content %}
+<div class="groups">
+
+  <h1 class="py-5 text-center text-primary">Twoja kolekcja fiszek</h1>
+  <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Stwórz nową grupę fiszek</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+          <form action="#" method="post">
+            <div class="modal-body">
+              <label for="modal-name" class="form-label">Nazwa grupy:</label>
+              <input type="text" class="form-control" id="modal-name" name="name"/>
+              <label for="modal-lang" class="form-label">Język:</label>
+                <select class="form-select" aria-label="Default select example" id="modal-lang" name="lang">
+                    {% if languages %}
+                        {% for lang in languages %}
+                          <option value={{lang}}>{{lang}}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+              <button type="submit" class="btn btn-primary">Potwierdź</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+<div class="row justify-content-start flex-wrap gap-4">
+    <div class="card p-0 m-2" style="width: 22%">
+        <img src="{{url_for('static', filename='images/new_cards.png')}}" class="border-bottom border-3 border-primary"/>
+      <div class="card-body p-0">
+        <div class="px-3 py-4">
+            <h5 class="card-title">Nowa</h5>
+            <p class="card-text">Stwórz nową grupę fiszek.</p>
+        </div>
+         <button class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom" data-bs-toggle="modal" data-bs-target="#reg-modal">
+            Dodaj
+         </button>
+      </div>
+    </div>
+
+    {% if groups %}
+        {% for group in groups %}
+        <div class="card p-0 m-2 position-relative" style="width: 22%">
+            <div class="position-relative w-100">
+                <a class="position-absolute text-decoration-none text-dark" href="/delete_group/{{group.id}}" style="top:0%; right: 0%">
+                <img src="{{url_for('static', filename='images/close_icon.png')}}"/>
+                </a>
+                <img src="{{url_for('static', filename='images/languages/' + group.lang + '.png')}}" class="lang-icon"/>
+                <img src="{{url_for('static', filename='images/sticky_notes5.png')}}" class="border-bottom border-3 border-primary w-100"/>
+                <p
+                    {% if group.completion < 50 %}
+                        class="text-secondary position-absolute bottom-0 end-0 px-2 completion"
+                    {% elif group.completion < 70 %}
+                        class="text-warning position-absolute bottom-0 end-0 px-2 completion"
+                    {% else %}
+                        class="text-success position-absolute bottom-0 end-0 px-2 completion"
+                    {% endif %}
+                >
+                    {{group.completion}} %</p>
+            </div>
+            <div class="card-body p-0">
+                <div class="px-3 py-4">
+                    <h5 class="card-title">{{group.name}}</h5>
+                    <p class="card-text">{{group.lang}}</p>
+                </div>
+                 <a href="/group/{{group.id}}" class="btn btn-primary w-100 mt-10 rounded-0 rounded-bottom">Przeglądaj</a>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

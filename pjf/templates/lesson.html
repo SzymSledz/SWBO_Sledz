@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Fiszki - lekcja{% endblock %}
+{% block content %}
+
+<div class="lesson">
+
+{% if cards %}
+    <h2 class="mx-auto my-5 w-25 text-center text-primary">Wpisz odpowiednie tłumaczenie pod każdym słowem</h2>
+    {% if not results %}
+    <div class=" position-relative">
+        <form action="#" method="post" class="d-flex align-items-center flex-column w-100 position-relative">
+            {% for card in cards %}
+                <div class="position-relative card-wrapper">
+                  <img src="{{url_for('static', filename='images/sticky_notes1.png')}}" class="w-100"/>
+                  <div class="position-relative text-center card-text">
+                    <p class="text-primary">Słowo: {{card.word}}</p>
+                    <input type="text" class="form-control transparent-input w-50 text-center" id="card-{{card.id}}" name="answer{{card.id}}"/>
+                  </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary submit-btn">Zakończ lekcję</button>
+        </form>
+    </div>
+    {% else %}
+    <div class=" position-relative">
+        <div class="d-flex align-items-center flex-column w-100 position-relative">
+            {% for i in range(cards | length) %}
+                <div class="position-relative card-wrapper">
+                  <img src="{{url_for('static', filename='images/sticky_notes1.png')}}" class="w-100"/>
+                  <div class="position-relative text-center card-text">
+                      {% if results[i] == "nearly" %}
+                        <p class="text-primary text-success">
+                            <u>Dobra odpowiedź, z literówką</u>
+                        </p>
+                      {% elif results[i] == "correct" %}
+                        <p class="text-primary text-success">
+                            <u>Dobra odpowiedź!</u>
+                        </p>
+                      {% else %}
+                         <p class="text-primary text-danger">
+                            <u>Zła odpowiedź :(</u>
+                        </p>
+                      {% endif %}
+                    <p class="text-primary">Słowo: {{cards[i].word}}</p>
+                      {% if results[i] != "correct" %}
+                        <p class="text-primary">Poprawna odpowiedź: {{cards[i].translation}}</p>
+                      {% endif %}
+                      <p class="text-primary">Twoja odpowiedź: {{answers[i]}}</p>
+                  </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+  {% else %}
+         <h2 class="py-2">Pusto...</h2>
+         <h4 class="py-2">Przejdź do swojej kolekcji, aby dodać słowa do lekcji</h4>
+         <a href="/cards_collection" class="btn btn-primary mt-10 rounded-0 rounded-bottom rounded-top my-2">Przejdź do kolekcji<img src="{{url_for('static', filename='images/arrow.png')}}" class="mw-100"/></a>
+  {% endif %}
+</div>
+{% endblock %}

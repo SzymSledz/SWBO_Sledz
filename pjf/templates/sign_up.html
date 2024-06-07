@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Fiszki - rejestracja{% endblock %}
+{% block content %}
+    <h1>Zarejestruj się</h1>
+    {% with messages  = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p class="text-danger">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action="#" method="post">
+      <div class="form-group mt-3">
+        <label for="loginInput">Wpisz Login</label>
+        <input type="text"
+           {% if error == 'user exists' or error == 'empty login' %}
+                class="form-control border border-danger"
+           {% else %}
+                class="form-control"
+           {% endif %}
+           id="loginInput" name="login" placeholder="Login" value="{{login if login}}">
+      </div>
+      <div class="form-group mt-3">
+        <label for="passwordInput">Wpisz hasło</label>
+        <input
+            type="password"
+            {% if error == "different passwords" or error == "empty password" %}
+                class="form-control border border-danger"
+            {% else %}
+                class="form-control"
+            {% endif %}
+            id="passwordInput"
+            name="password"
+            placeholder="*****"
+          >
+      </div>
+      <div class="form-group mt-3">
+        <label for="passwordRepeatInput">Powtórz hasło</label>
+        <input
+            type="password"
+            {% if error == "different passwords" or error == "empty password" %}
+                class="form-control border border-danger"
+            {% else %}
+                class="form-control"
+            {% endif %}
+            id="passwordRepeatInput"
+            name="passwordRepeat"
+            placeholder="*****"
+        >
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Zatwierdź</button>
+    </form>
+{% endblock %}

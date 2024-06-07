@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Notatki{% endblock %}
+
+{% block content %}
+<h2 class="text-primary py-5">Twoje Notatki</h2>
+
+<div class="mb-4">
+    <a href="{{ url_for('notes_bp.add_note') }}" class="btn btn-primary">Dodaj Notatkę</a>
+</div>
+
+<div class="list-group">
+    {% for note in notes %}
+        <div class="list-group-item mb-4">
+            <h3 class="list-group-item-heading" >{{ note.title }}</h3>
+            <p class="text-muted"><em>{{ note.date.strftime('%Y-%m-%d %H:%M:%S') }}</em></p>
+            <div class="note-text">
+                {{ note.text[:70] }}
+                {% if note.text|length > 70 %}
+                    <span id="dots-{{ note.id }}">...</span>
+                    <span id="more-{{ note.id }}" style="display:none;">{{ note.text[70:] }}</span>
+                    <button onclick="toggleText({{ note.id }})" class="btn btn-outline-primary btn-sm btn-see-more" id="myBtn-{{ note.id }}">Zobacz więcej</button>
+                {% endif %}
+            </div>
+            <form method="POST" action="{{ url_for('notes_bp.delete_note', note_id=note.id) }}" class="d-inline">
+                <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    function toggleText(id) {
+        var dots = document.getElementById("dots-" + id);
+        var moreText = document.getElementById("more-" + id);
+        var btnText = document.getElementById("myBtn-" + id);
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Zobacz więcej";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Zwiń";
+            moreText.style.display = "inline";
+        }
+    }
+</script>
+{% endblock %}
