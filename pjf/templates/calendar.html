@@ -25,13 +25,17 @@
     <!-- Modal -->
     <div class="modal" id="event-modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="modal-title"></h2>
+            <div class="modal-title-box">
+              <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modal-title"></h2>
+            </div>
             <p id="modal-date"></p>
             <p id="modal-description"></p>
-            <button class="btn btn-danger" id="delete-button" onclick="deleteEvent()">Usuń</button>
-            <a class="btn btn-primary" id="edit-button" href="#">Edytuj</a>
-            <button class="btn btn-secondary" onclick="closeModal()">Zamknij</button>
+            <div class="button-box">
+                <button class="btn btn-danger" id="delete-button" onclick="deleteEvent()">Usuń</button>
+                <a class="btn btn-primary" id="edit-button" href="#">Edytuj</a>
+                <button class="btn btn-secondary" onclick="closeModal()">Zamknij</button>
+            </div>
         </div>
     </div>
 
@@ -44,6 +48,11 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            .btn.btn-primary:nth-child(2){
+                border-right: 1px solid #fff;
+                border-left: 1px solid #fff;
+                z-index: 5;
+            }
         }
         .calendar-header h1 {
             margin: 0;
@@ -113,11 +122,28 @@
         .modal-content {
             background-color: white;
             margin: 15% auto;
-            padding: 20px;
+            padding: 1rem 1rem 2rem 1rem;
             border: 1px solid #888;
             width: 80%;
             max-width: 600px;
             text-align: center;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+
+            .button-box{
+                display: flex;
+                flex-direction: column;
+                width: 65%;
+                justify-content: center;
+                gap: 1rem;
+
+                >*{
+                    width: 100%;
+                    border-radius: 0.5rem;
+                }
+            }
         }
 
         .close {
@@ -125,6 +151,10 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            margin-left: auto;
+            position: absolute;
+            top: 3%;
+            right: 3%;
         }
 
         .close:hover,

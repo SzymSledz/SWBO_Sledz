@@ -97,7 +97,10 @@
             }
 
             .card-body > div{
-                min-height: 140px;
+                min-height: 200px;
+                @media (min-width: 1200px) {
+                    min-height: 150px;
+                }
             }
         }
     }
