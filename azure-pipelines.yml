@@ -1,0 +1,24 @@
+# Azure Pipelines dla projektu Python
+trigger:
+- main  # Automatyczny build dla gałęzi "main"
+
+pool:
+  vmImage: 'ubuntu-latest'  # Wybór maszyny wirtualnej z systemem Ubuntu
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.12'  # Wybór wersji Python
+    addToPath: true
+
+- script: |
+    python -m venv venv  # Utworzenie wirtualnego środowiska
+    source venv/bin/activate
+    pip install --upgrade pip  # Aktualizacja pip
+    pip install -r requirements.txt  # Instalacja zależności
+  displayName: 'Instalacja zależności'
+
+- script: |
+    source venv/bin/activate
+    pytest  # Uruchomienie testów
+  displayName: 'Uruchomienie testów'
