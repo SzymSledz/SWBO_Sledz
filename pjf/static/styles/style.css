@@ -87,7 +87,7 @@
     font-weight: 600;
 }
 .home{
-    max-width: 1400px;
+    max-width: 1440px;
     .d-flex{
         width: 100%;
         .card{
@@ -199,4 +199,8 @@
 }
 .fc .fc-daygrid-event-harness {
     margin-bottom: 5px;
+}
+
+.wrapper{
+    max-width: 1440px;
 }
