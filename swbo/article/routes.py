@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from pjf import db
-from pjf.models import articles
+from swbo import db
+from swbo.models import articles
 from datetime import datetime
 
 

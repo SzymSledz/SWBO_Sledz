@@ -6,8 +6,8 @@
 
     <h1 class="text-center text-primary">Witaj na stronie głównej</h1>
     <h4 class="text-center px-5 py-2 text-primary">Dzięki tej aplikacji możesz tworzyć własne notatki, uczyć się słówek w obych językach, a dzięki sekcji artykułów poznasz metody na efektywną naukę</h4>
-
-    <div class="d-flex flex-wrap">
+    <section>
+        <div class="d-flex flex-wrap">
         <div class="card col-sm p-0 m-2" >
             <img src="{{url_for('static', filename='images/learning.png')}}" class="border-top border-bottom border-3 border-primary"/>
           <div class="card-body p-0">
@@ -39,6 +39,7 @@
           </div>
         </div>
     </div>
+    </section>
 </div>
 </div>
 {% endblock %}

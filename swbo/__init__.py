@@ -14,18 +14,18 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Importuj modele
-from pjf.models import calendarEvent
+from swbo.models import calendarEvent
 
 # Tworzenie wszystkich tabel
 with app.app_context():
     db.create_all()
 
-from pjf.main.routes import main
-from pjf.user.routes import user
-from pjf.collection.routes import collection
-from pjf.practice.routes import practice
-from pjf.article.routes import article
-from pjf.calendar.routes import calendar
+from swbo.main.routes import main
+from swbo.user.routes import user
+from swbo.collection.routes import collection
+from swbo.practice.routes import practice
+from swbo.article.routes import article
+from swbo.calendar.routes import calendar
 
 app.register_blueprint(user)
 app.register_blueprint(main)

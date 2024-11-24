@@ -2,11 +2,11 @@ from random import random
 from flask import Flask, redirect, url_for, render_template, request, session, flash, Blueprint
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
-from pjf import app
-from pjf import db
-from pjf.models import users, groups, cards, lessons
-from pjf.main import *
-from pjf.practice.utils import shuffle_list, check_answers, calculate_score, calculate_group_completion
+from swbo import app
+from swbo import db
+from swbo.models import users, groups, cards, lessons
+from swbo.main import *
+from swbo.practice.utils import shuffle_list, check_answers, calculate_score, calculate_group_completion
 from datetime import datetime
 
 practice = Blueprint('practice', __name__)

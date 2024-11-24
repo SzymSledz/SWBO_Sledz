@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
-from pjf import db
+from swbo import db
 from datetime import datetime
 class users(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)

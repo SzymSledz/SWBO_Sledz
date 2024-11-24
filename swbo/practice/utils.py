@@ -2,10 +2,10 @@ import random as rand
 from flask import Flask, redirect, url_for, render_template, request, session, flash, Blueprint
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
-from pjf import app
-from pjf import db
-from pjf.models import users, groups, cards, lessons
-from pjf.main import *
+from swbo import app
+from swbo import db
+from swbo.models import users, groups, cards, lessons
+from swbo.main import *
 
 def swapPositions(list, pos1, pos2):
     list[pos1], list[pos2] = list[pos2], list[pos1]

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from pjf import db
-from pjf.models import users, calendarEvent
+from swbo import db
+from swbo.models import users, calendarEvent
 from datetime import datetime
 
 calendar = Blueprint('calendar', __name__)
