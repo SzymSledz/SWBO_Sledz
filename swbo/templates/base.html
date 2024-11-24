@@ -52,10 +52,13 @@
                             <a class="navbar-link" href="/cards_collection">Przykładowy link 3</a>
                         </div>
                     </div>
-                    <div class="nav-level-2">
+                    <div class="nav-level-2 nav-root">
                         <p>
-                            <a class="navbar-link" href="/stats">Mój profil</a>
+                            <a class="navbar-link" href="/stats">Mój profil</a><span class="inner-nav-expand">^</span>
                         </p>
+                        <div class="container-fluid nav-level-3 hidden">
+                            <a class="navbar-brand mw-100" href="/logout"><img src="{{url_for('static', filename='images/logout_icon.png')}}"/></a>
+                        </div>
                     </div>
                 </div>
           </div>
