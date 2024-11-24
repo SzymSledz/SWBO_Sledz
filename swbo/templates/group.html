@@ -45,8 +45,9 @@
                 name="translation"
               >
           </div>
+                <button type="submit" class="btn btn-primary mt-3">Dodaj</button>
         </div>
-      <button type="submit" class="btn btn-primary mt-3">Dodaj</button>
+
     </form>
 </div>
 
@@ -55,12 +56,12 @@
     {% if cards %}
          <div class="row justify-content-start flex-wrap">
             {% for card in cards %}
-            <div class="p-0 m-3 position-relative" style="width: 15%">
-                <a class="position-absolute text-decoration-none text-dark" href="/delete_card/{{card.id}}" style="top:20%; right: 0%">
+            <div class="p-0 m-3 position-relative board-card">
+                <a class="position-absolute text-decoration-none text-dark board-card-close" href="/delete_card/{{card.id}}">
                     <img src="{{url_for('static', filename='images/close_icon.png')}}"/>
                 </a>
                 <img src="{{url_for('static', filename='images/sticky_note.png')}}"/>
-                <div class="position-absolute text-center " style="top:35%; left: 30%">
+                <div class="position-absolute text-center board-card-text">
                     <p>Słowo: {{card.word}} </p>
                     <p>Tłumaczenie: {{card.translation}}</p>
                 </div>

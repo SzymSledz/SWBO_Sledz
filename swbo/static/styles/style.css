@@ -107,10 +107,12 @@
 }
 
 .group form{
-    max-width: 40%;
+    max-width: unset;
+    width: fit-content;
     text-align: center;
     margin: 0 auto;
     margin-bottom: 5%;
+    position: relative;
 }
 
 .group form label{
@@ -127,18 +129,20 @@
 }
 
 .group .card-img{
-    max-width: 90%;
-    width: 100%;
+    width: 500px;
     z-index: 2;
     position: relative;
 }
 
 .group .form-body{
-    margin-top: -68%;
     z-index: 5;
     position: relative;
     font-weight: 600;
-    margin-bottom: 2%;
+    width: 80%;
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .group form button{
@@ -147,6 +151,7 @@
     position: relative;
     background-color: #ffc107;
     border: none;
+    margin-top: 1.5rem !important;
 }
 .group form button:hover{
     background-color: #ff9c07;
@@ -155,6 +160,10 @@
 .board img.board-img{
     position: absolute;
     width: 100%;
+
+    @media (max-width: 1024px) {
+        height: 100vh;
+    }
 }
 .board .row.flex-wrap{
     padding: 1% 3%;
@@ -302,4 +311,33 @@
         text-align: left;
         margin-left: 30px;
     }
+}
+
+.board-card{
+    width: fit-content!important;
+    position: relative;
+
+    /*@media (min-width: 1200px) {*/
+    /*    max-width: 200px;*/
+    /*}*/
+    /*@media (min-width: 1200px) {*/
+    /*    max-width: 150px;*/
+    /*}*/
+
+
+}
+
+.board-card img{
+    width: 100%
+}
+
+.board-card-text{
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+}
+
+.board-card-close{
+    right: 20%;
+    top: 20%    ;
 }
