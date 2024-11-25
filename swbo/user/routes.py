@@ -147,7 +147,7 @@ def logout_page():
 @user.route("/stats")
 def stats_page():
     if "logged_in" not in session:
-        return redirect(url_for("login.login_page"))
+        return redirect(url_for("user.login_page"))
 
     user_id = get_user_id(session["login"])
     users_groups = groups.query.filter_by(user_id=user_id).all()

@@ -24,12 +24,8 @@ from swbo.main.routes import main
 from swbo.user.routes import user
 from swbo.collection.routes import collection
 from swbo.practice.routes import practice
-from swbo.article.routes import article
-from swbo.calendar.routes import calendar
 
 app.register_blueprint(user)
 app.register_blueprint(main)
 app.register_blueprint(collection)
 app.register_blueprint(practice)
-app.register_blueprint(article)
-app.register_blueprint(calendar)

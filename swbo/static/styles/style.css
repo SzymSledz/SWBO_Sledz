@@ -7,10 +7,6 @@
     margin: 0 auto;
 }
 
-.stats{
-    width: 65%;
-    margin: 0 auto;
-}
 
 .stats .user{
     width: 30%;
@@ -27,21 +23,48 @@
 
 .stats .flex-row:nth-child(2) > div{
     width: 32%;
+
+    @media (max-width: 991px){
+        width: 100%;
+    }
 }
 
-.stats .flex-row:nth-child(3) > div{
-    width: 49%;
-}
 
-.stats .misc-stats{
-    text-align: center;
-    color: #0d6efd;
-    font-weight: 600;
-    border-radius: 20px 20px;
-}
+
 .stats-header{
     width: 65%!important;
     margin: 0 auto;
+}
+
+.stats {
+    width: 65%;
+    margin: 0 auto;
+
+    @media (max-width: 991px) {
+        width: 85%;
+    }
+
+    .stats-row-2 > div{
+        width: 49%;
+    }
+
+    .stats-row-1,
+    .stats-row-2 {
+        flex-wrap: wrap;
+
+        > div {
+            @media (max-width: 991px) {
+                width: 100%;
+            }
+        }
+    }
+
+     .misc-stats{
+        text-align: center;
+        color: #0d6efd;
+        font-weight: 600;
+        border-radius: 20px 20px;
+    }
 }
 
 .practice .lang-icon,
@@ -63,8 +86,18 @@
 }
 
 .lesson .card-wrapper{
-    width: 37%;
+    width: fit-content;
+    text-align: center;
     margin-bottom: 14%;
+
+    @media (max-width: 600px) {
+        margin-bottom: 20%;
+    }
+
+    img{
+        max-width: 100%;
+        width: 500px !important;
+    }
 }
 .group input:focus,
 .lesson input:focus{
@@ -72,11 +105,23 @@
     border: none!important;
 }
 
-.lesson .submit-btn{
-    z-index: 3;
-    margin: 7% auto;
-    width: 24%;
+.lesson {
+    > .text-primary{
+        width: 25%;
+
+        @media (max-width: 991px){
+            width: 75%;
+        }
+    }
+
+
+    .submit-btn{
+        z-index: 3;
+        margin: 7% auto;
+        width: 24%;
+    }
 }
+
 .practice .completion,
 .groups .completion{
     font-size: 1.2rem;
@@ -94,6 +139,10 @@
             flex-basis: 30%;
             @media (max-width: 991px){
                 flex-basis: 75%;
+            }
+
+            @media (max-width: 600px){
+                flex-basis: 100%;
             }
 
             .card-body > div{
@@ -130,6 +179,7 @@
 
 .group .card-img{
     width: 500px;
+    max-width: 100%;
     z-index: 2;
     position: relative;
 }
@@ -233,16 +283,21 @@
     margin-left: 10px;
 }
 
+.log-out-icon{
+    width: 20px;
+    margin-left: 10px;
+}
+
 .nav-inner{
     width: 100%;
 }
 
 .nav-level-2{
-    border-top: 1px solid #fff;
+    border-top: 2px solid #fff;
 }
 
 .nav-level-2:last-child{
-    border-bottom: 1px solid #fff;
+    border-bottom: 2px solid #fff;
 }
 
 .nav-inner p {
@@ -260,6 +315,7 @@
 .nav-inner .navbar-link{
     color: #fff;
     text-decoration: none;
+    font-size: 1.5rem;
 }
 
 .nav-level-2.nav-root{
@@ -273,12 +329,17 @@
     transform: rotate(180deg);
     cursor: pointer;
     width: fit-content;
-    top: 10px;
+    top: 5px;
     display: block;
     transition: all .3s ease-in-out;
+    font-size: 1.75rem;
 
     @media (min-width: 1200px) {
-        left: 13%;
+        left: 200px;
+    }
+
+    @media (max-width: 600px) {
+        right: 5%;
     }
 }
 
@@ -294,7 +355,7 @@
     align-items: center;
     color: #fff;
     font-weight: 500;
-    font-size: 1.125rem;
+    font-size: 1.5rem;
 
     @media (min-width: 1200px) {
         justify-content: start;
@@ -313,18 +374,18 @@
     }
 }
 
+.nav-level-3:last-child{
+    padding-bottom: 15px;
+}
+
+.nav-level-3 a{
+    border-bottom: 2px solid white;
+    width: fit-content;
+}
+
 .board-card{
     width: fit-content!important;
     position: relative;
-
-    /*@media (min-width: 1200px) {*/
-    /*    max-width: 200px;*/
-    /*}*/
-    /*@media (min-width: 1200px) {*/
-    /*    max-width: 150px;*/
-    /*}*/
-
-
 }
 
 .board-card img{
@@ -340,4 +401,17 @@
 .board-card-close{
     right: 20%;
     top: 20%    ;
+}
+.practice,
+.groups{
+    .card{
+        flex-basis: 25%;
+        margin: 0 1rem;
+
+        @media (max-width: 991px) {
+            flex-basis: calc(48% - 2rem)
+        }
+
+    }
+
 }

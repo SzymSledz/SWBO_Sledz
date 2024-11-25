@@ -21,7 +21,7 @@
                     <a class="navbar-brand mw-100" href="/logout"><img src="{{url_for('static', filename='images/logout_icon.png')}}"/></a>
                   </div>
               {% else %}
-                  <div class="hidden">
+                  <div>
                     <a class="navbar-brand" href="/login">Logowanie</a>
                     <a class="navbar-brand" href="/sign_up">Rejestracja</a>
                   </div>
@@ -32,33 +32,28 @@
                 <div class="nav-inner">
                     <div class="nav-level-2 nav-root">
                         <p>
-                            <a class="navbar-link" href="/">Efektywna Nauka </a><span class="inner-nav-expand">^</span>
+                            <a class="navbar-link" href="/">Efektywna Nauka </a>
                         </p>
-                        <div class="container-fluid nav-level-3 hidden">
-                            <a class="navbar-link" href="/cards_collection">Przykładowy link 1</a>
-                        </div>
-                        <div class="container-fluid nav-level-3 hidden">
-                            <a class="navbar-link" href="/cards_collection">Przykładowy link 2</a>
-                        </div>
-                        <div class="container-fluid nav-level-3 hidden">
-                            <a class="navbar-link" href="/cards_collection">Przykładowy link 3</a>
-                        </div>
                     </div>
                     <div class="nav-level-2 nav-root">
                         <p>
-                            <a class="navbar-link" href="/cards_collection">Moja kolekcja</a><span class="inner-nav-expand">^</span>
+                            <a class="navbar-link" href="/cards_collection">Moja kolekcja</a>
                         </p>
-                        <div class="container-fluid nav-level-3 hidden">
-                            <a class="navbar-link" href="/cards_collection">Przykładowy link 3</a>
-                        </div>
                     </div>
                     <div class="nav-level-2 nav-root">
                         <p>
                             <a class="navbar-link" href="/stats">Mój profil</a><span class="inner-nav-expand">^</span>
                         </p>
                         <div class="container-fluid nav-level-3 hidden">
-                            <a class="navbar-brand mw-100" href="/logout"><img src="{{url_for('static', filename='images/logout_icon.png')}}"/></a>
+                            <a class="navbar-link" href="/logout">
+                                wyloguj<img class="log-out-icon" src="{{url_for('static', filename='images/logout_icon.png')}}"/>
+                            </a>
                         </div>
+        </div>
+                    <div class="nav-level-2 nav-root">
+                        <p>
+                            <a class="navbar-link" href="/practice">Ćwicz</a>
+                        </p>
                     </div>
                 </div>
           </div>
