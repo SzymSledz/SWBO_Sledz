@@ -18,8 +18,10 @@ def count_completion(user_login):
 
     for group in user_groups:
         result += group.completion
-
-    return round(result/len(user_groups),2)
+    if len(user_groups) > 0:
+        return round(result/len(user_groups),2)
+    else:
+        return 0
 
 def count_words(user_login):
     user_id = get_user_id(user_login)
@@ -28,8 +30,9 @@ def count_words(user_login):
 
     for group in user_groups:
         words_in_group = cards.query.filter_by(group_id=group.id).all()
-        known_words = int(group.completion)/100 * len(words_in_group)
-        result += math.floor(known_words)
+        if len(words_in_group) > 0:
+            known_words = int(group.completion)/100 * len(words_in_group)
+            result += math.floor(known_words)
 
     return result
 
@@ -57,14 +60,16 @@ def get_favorite_lang(user_login):
         for lesson in lessons_in_group:
             user_lessons.append(lesson.group.lang)
 
-    counter = 0
-    result = user_lessons[0]
+    result = ''
+    if len(user_lessons):
+        counter = 0
+        result = user_lessons[0]
 
-    for i in user_lessons:
-        curr_frequency = user_lessons.count(i)
-        if (curr_frequency > counter):
-            counter = curr_frequency
-            result = i
+        for i in user_lessons:
+            curr_frequency = user_lessons.count(i)
+            if (curr_frequency > counter):
+                counter = curr_frequency
+                result = i
 
     return result
 
